@@ -1,4 +1,5 @@
 'use client';
+
 import * as React from "react";
 import { motion } from "framer-motion";
 import {
@@ -10,11 +11,25 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, TrendingUp, Shield, Zap, LineChart, Rocket, ArrowRight } from "lucide-react";
 
+import {
+  CheckCircle2,
+  TrendingUp,
+  Shield,
+  Zap,
+  LineChart,
+  Rocket,
+  ArrowRight,
+} from "lucide-react";
+
+import HeroRibbon from "@/components/hero-ribbon";   // ✅ new
+import FadeIn from "@/components/fade-in";           // ✅ new
+
+// --- DATA ---
 const progressData = [
   { stage: "Phase 1", metric: 68 },
   { stage: "Phase 2", metric: 82 },
@@ -42,6 +57,7 @@ const Pill = ({ children }: { children: React.ReactNode }) => (
   </span>
 );
 
+// --- PAGE ---
 export default function MEDVOXALanding() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-slate-900">
@@ -54,6 +70,7 @@ export default function MEDVOXALanding() {
               <span className="h-8 w-8 rounded-2xl bg-slate-900 text-white grid place-items-center">M</span>
               MEDVOXA
             </a>
+
             <nav className="hidden md:flex items-center gap-6 text-sm">
               <a href="#vision">Vision</a>
               <a href="#progress">Progress</a>
@@ -62,34 +79,56 @@ export default function MEDVOXALanding() {
               <a href="#security">Security</a>
               <a href="#contact">Contact</a>
             </nav>
-            <a href="mailto:hello@medvoxa.com">
-              <Button className="rounded-2xl">Get a demo</Button>
-            </a>
+
+            {/* ✅ Smooth-scroll to contact */}
+            <Button
+              className="rounded-2xl"
+              onClick={() =>
+                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              Get a demo
+            </Button>
           </div>
         </div>
       </header>
 
       {/* HERO */}
       <section id="home" className="relative overflow-hidden py-10">
+        {/* Apple-style flowing gradient ribbon */}
+        <HeroRibbon />
+
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 items-center py-10">
-
-            {/* LEFT */}
+            {/* LEFT SIDE */}
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <Badge className="mb-4 rounded-full">Autonomous RCM Engine</Badge>
+
               <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
-                Self-repairing Revenue Cycle for <span className="bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">Providers</span>
+                Self-repairing Revenue Cycle for{" "}
+                <span className="bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">
+                  Providers
+                </span>
               </h1>
+
               <p className="mt-4 text-lg text-slate-600 max-w-xl">
-                MEDVOXA reduces denials, accelerates cash, and keeps you audit-ready — using an AI-assisted, workflow-first engine that learns from every remittance.<br/><br/>
-                Seamlessly integrates with your existing billing, clearinghouse, and EMR systems — no migrations required.
+                MEDVOXA reduces denials, accelerates cash, and keeps you audit-ready —
+                using an AI-assisted, workflow-first engine that learns from every remittance.
+                <br/><br/>
+                Seamlessly integrates with your existing billing, clearinghouse, and EMR systems —
+                no migrations required.
               </p>
+
               <div className="mt-6 flex flex-wrap gap-3">
+                {/* ✅ Hero CTA opens email */}
                 <a href="mailto:hello@medvoxa.com">
-                  <Button className="rounded-2xl">Request a live demo <ArrowRight className="ml-2 h-4 w-4"/></Button>
+                  <Button className="rounded-2xl">
+                    Request a live demo <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
                 </a>
                 <Button variant="outline" className="rounded-2xl">View roadmap</Button>
               </div>
+
               <div className="mt-6 flex flex-wrap gap-2">
                 <Pill>ERA-driven denial intelligence</Pill>
                 <Pill>Clean claim optimizer</Pill>
@@ -97,12 +136,13 @@ export default function MEDVOXALanding() {
               </div>
             </motion.div>
 
-            {/* RIGHT */}
+            {/* RIGHT SIDE */}
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
               <Card className="rounded-2xl shadow-lg">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2"><LineChart className="h-5 w-5"/> Weekly RCM Snapshot</CardTitle>
                 </CardHeader>
+
                 <CardContent>
                   <div className="grid grid-cols-3 gap-3 mb-6">
                     {kpiData.map((k) => (
@@ -112,6 +152,7 @@ export default function MEDVOXALanding() {
                       </div>
                     ))}
                   </div>
+
                   <div className="h-72 pb-4 w-full">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={weeklyRCM}>
@@ -131,36 +172,54 @@ export default function MEDVOXALanding() {
         </div>
       </section>
 
-      {/* VISION */}
-      <section id="vision" className="py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 flex items-center gap-2">
-            <Rocket className="h-5 w-5"/>
-            <h2 className="text-3xl font-bold">Our Vision</h2>
-          </div>
+      {/* VISION — Cinematic, Apple-style */}
+      <section id="vision" className="py-28 relative overflow-hidden">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
+          <FadeIn>
+            <Badge className="mb-4 rounded-full">Why MEDVOXA</Badge>
+          </FadeIn>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="rounded-2xl">
-              <CardHeader><CardTitle>Zero-Friction Submissions</CardTitle></CardHeader>
-              <CardContent className="text-slate-600">
-                A clean-claim engine that validates, fixes, and explains before payers do — improving first-pass yield.
-              </CardContent>
-            </Card>
+          <FadeIn delay={0.1}>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">
+              The Revenue Cycle Should Improve Itself
+            </h2>
+          </FadeIn>
 
-            <Card className="rounded-2xl">
-              <CardHeader><CardTitle>Self-Repairing Denials</CardTitle></CardHeader>
-              <CardContent className="text-slate-600">
-                Recommends ICD/CPT pairs proven to pay for your payer mix — with audit-ready reasoning.
-              </CardContent>
-            </Card>
+          <FadeIn delay={0.2}>
+            <p className="mt-6 text-lg text-slate-600 max-w-3xl mx-auto">
+              Most revenue cycle systems react to denials after the damage occurs.
+              MEDVOXA anticipates, prevents, and corrects — before claims reach the payer.
+            </p>
+          </FadeIn>
+        </div>
 
-            <Card className="rounded-2xl">
-              <CardHeader><CardTitle>Audit-Only Oversight</CardTitle></CardHeader>
-              <CardContent className="text-slate-600">
-                Humans supervise; the engine explains every action clearly and traceably.
-              </CardContent>
-            </Card>
-          </div>
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 mt-20 grid md:grid-cols-3 gap-10 text-center">
+          <FadeIn delay={0.3}>
+            <div>
+              <h3 className="text-2xl font-semibold text-slate-900 mb-3">The Problem</h3>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Manual rework and repeated firefighting. The same denials loop, again and again.
+              </p>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.45}>
+            <div>
+              <h3 className="text-2xl font-semibold text-slate-900 mb-3">The Shift</h3>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                The engine learns from adjudications. Corrections become reusable, explainable, and automatic.
+              </p>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.6}>
+            <div>
+              <h3 className="text-2xl font-semibold text-slate-900 mb-3">The Outcome</h3>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Denials decrease. Cash accelerates. Oversight becomes audit-native, not labor-bound.
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -176,12 +235,10 @@ export default function MEDVOXALanding() {
             <Card className="rounded-2xl">
               <CardHeader><CardTitle>Milestones</CardTitle></CardHeader>
               <CardContent className="space-y-6">
-
                 <RoadmapItem num="1" title="Phase 1 — Data Standardization" desc="Unified claims/ERA datasets and validation gates." />
                 <RoadmapItem num="2" title="Phase 2 — Denial Self-Repair Engine" desc="CO-16/50/97/109 & PR-204 suggestion logic." />
                 <RoadmapItem num="3" title="Phase 3 — CMS-1500 Generator" desc="Flattened form generation and payer layouts." />
                 <RoadmapItem icon={<Zap className="h-4 w-4"/>} highlight title="Next — Adaptive Rules & Worklists" desc="Dynamic queues with explainable logic." />
-
               </CardContent>
             </Card>
 
@@ -211,19 +268,19 @@ export default function MEDVOXALanding() {
             <h2 className="text-3xl font-bold">Value for Providers</h2>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-6">
-            {[
-              { icon: <TrendingUp className="h-5 w-5"/>, title: "Faster Cash", desc: "Shorter A/R cycles and improved liquidity."},
-              { icon: <CheckCircle2 className="h-5 w-5"/>, title: "Fewer Denials", desc: "Root cause prevention + automated corrections."},
-              { icon: <LineChart className="h-5 w-5"/>, title: "Management Reporting", desc: "Clear provider-centric operational KPIs."},
-              { icon: <Shield className="h-5 w-5"/>, title: "Compliance-Ready", desc: "Every action is traceable and audit-logged."}
-            ].map((item) => (
-              <Card key={item.title} className="rounded-2xl">
-                <CardHeader><CardTitle className="flex items-center gap-2">{item.icon}{item.title}</CardTitle></CardHeader>
-                <CardContent className="text-slate-600">{item.desc}</CardContent>
-              </Card>
-            ))}
-          </div>
+        <div className="grid md:grid-cols-4 gap-6">
+          {[
+            { icon: <TrendingUp className="h-5 w-5"/>, title: "Faster Cash", desc: "Shorter A/R cycles and improved liquidity."},
+            { icon: <CheckCircle2 className="h-5 w-5"/>, title: "Fewer Denials", desc: "Root cause prevention + automated corrections."},
+            { icon: <LineChart className="h-5 w-5"/>, title: "Management Reporting", desc: "Clear provider-centric operational KPIs."},
+            { icon: <Shield className="h-5 w-5"/>, title: "Compliance-Ready", desc: "Every action is traceable and audit-logged."}
+          ].map((item) => (
+            <Card key={item.title} className="rounded-2xl">
+              <CardHeader><CardTitle className="flex items-center gap-2">{item.icon}{item.title}</CardTitle></CardHeader>
+              <CardContent className="text-slate-600">{item.desc}</CardContent>
+            </Card>
+          ))}
+        </div>
         </div>
       </section>
 
@@ -252,50 +309,41 @@ export default function MEDVOXALanding() {
         </div>
       </section>
 
-      {/* ✅ CONTACT — TEMPORARY SIMPLE EMAIL BLOCK */}
+      {/* CONTACT — T1 Temporary Email Mode */}
       <section id="contact" className="py-20 bg-white border-t">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+        <div className="mx-auto max-w-3xl px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Request a Demo</h2>
-          <p className="text-slate-600 mb-8 max-w-xl mx-auto text-center">
-            We’re currently onboarding through direct scheduling.
-            Reach out anytime:
+          <p className="text-slate-600 mb-6 max-w-xl mx-auto">
+            We're scheduling private previews. Reach out and we’ll coordinate your walkthrough.
           </p>
 
-          <a
-            href="mailto:hello@medvoxa.com"
-            className="inline-block rounded-2xl bg-slate-900 text-white px-6 py-3 text-lg hover:bg-slate-700 transition"
-          >
+          <a href="mailto:hello@medvoxa.com" className="text-lg font-medium text-slate-900 hover:underline">
             hello@medvoxa.com
           </a>
 
-          <p className="mt-6 text-sm text-slate-500">
-            You’ll receive a response within one business day.
-          </p>
+          <p className="text-xs text-slate-500 mt-4">No PHI should be included in emails. We reply in 1 business day.</p>
         </div>
       </section>
 
       {/* FOOTER */}
       <footer className="border-t">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+        <div className="mx-auto max-w-7xl px-4 py-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
               <span className="h-7 w-7 rounded-xl bg-slate-900 text-white grid place-items-center text-sm">M</span>
-              <span className="text-sm text-slate-600">
-                © {new Date().getFullYear()} MEDVOXA. All rights reserved.
-              </span>
+              <span className="text-sm text-slate-600">© {new Date().getFullYear()} MEDVOXA. All rights reserved.</span>
             </div>
             <div className="text-xs text-slate-500">
-              MEDVOXA is a workflow-first RCM software platform. No PHI is stored on this website.
+              No PHI is stored on this website.
             </div>
           </div>
         </div>
       </footer>
-
     </div>
   );
 }
 
-/* UTILITY COMPONENTS — unchanged */
+// --- SMALL UTIL COMPONENTS
 function RoadmapItem({ num, icon, title, desc, highlight }: any) {
   return (
     <div className="flex items-start gap-3">

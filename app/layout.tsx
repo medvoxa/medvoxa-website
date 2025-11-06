@@ -14,27 +14,17 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "MEDVOXA — Autonomous RCM Engine",
-  description: "Self-repairing revenue cycle workflows for healthcare providers.",
+  description: "Self-repairing revenue cycle management engine for providers.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
-        {/* Plausible Analytics (no cookies / no consent banners needed) */}
-        <script
-          defer
-          data-domain="medvoxa.com"
-          src="https://plausible.io/js/script.js"
-        ></script>
+        {/* Plausible Analytics */}
+        <script defer data-domain="medvoxa.com" src="https://plausible.io/js/script.js"></script>
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-slate-900`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>
