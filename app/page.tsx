@@ -1,6 +1,5 @@
 'use client';
 import * as React from "react";
-import DemoForm from "./components/demo-form";
 import { motion } from "framer-motion";
 import {
   BarChart,
@@ -13,8 +12,6 @@ import {
 } from "recharts";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2, TrendingUp, Shield, Zap, LineChart, Rocket, ArrowRight } from "lucide-react";
 
@@ -65,12 +62,9 @@ export default function MEDVOXALanding() {
               <a href="#security">Security</a>
               <a href="#contact">Contact</a>
             </nav>
-            <Button 
-              className="rounded-2xl"
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              Get a demo
-            </Button>
+            <a href="mailto:hello@medvoxa.com">
+              <Button className="rounded-2xl">Get a demo</Button>
+            </a>
           </div>
         </div>
       </header>
@@ -79,18 +73,31 @@ export default function MEDVOXALanding() {
       <section id="home" className="relative overflow-hidden py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 items-center py-10">
+
+            {/* LEFT */}
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <Badge className="mb-4 rounded-full">Autonomous RCM Engine</Badge>
               <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
                 Self-repairing Revenue Cycle for <span className="bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">Providers</span>
               </h1>
               <p className="mt-4 text-lg text-slate-600 max-w-xl">
-                MEDVOXA reduces denials, accelerates cash, and keeps you audit-ready — using an AI-assisted, workflow-first engine that learns from every remittance.
-                <br /><br />
+                MEDVOXA reduces denials, accelerates cash, and keeps you audit-ready — using an AI-assisted, workflow-first engine that learns from every remittance.<br/><br/>
                 Seamlessly integrates with your existing billing, clearinghouse, and EMR systems — no migrations required.
               </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a href="mailto:hello@medvoxa.com">
+                  <Button className="rounded-2xl">Request a live demo <ArrowRight className="ml-2 h-4 w-4"/></Button>
+                </a>
+                <Button variant="outline" className="rounded-2xl">View roadmap</Button>
+              </div>
+              <div className="mt-6 flex flex-wrap gap-2">
+                <Pill>ERA-driven denial intelligence</Pill>
+                <Pill>Clean claim optimizer</Pill>
+                <Pill>Provider-first reporting</Pill>
+              </div>
             </motion.div>
 
+            {/* RIGHT */}
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
               <Card className="rounded-2xl shadow-lg">
                 <CardHeader>
@@ -134,29 +141,23 @@ export default function MEDVOXALanding() {
 
           <div className="grid md:grid-cols-3 gap-6">
             <Card className="rounded-2xl">
-              <CardHeader>
-                <CardTitle>Zero-Friction Submissions</CardTitle>
-              </CardHeader>
+              <CardHeader><CardTitle>Zero-Friction Submissions</CardTitle></CardHeader>
               <CardContent className="text-slate-600">
-                A clean-claim engine that validates, fixes, and explains—before payers do—so your first pass yield keeps rising.
+                A clean-claim engine that validates, fixes, and explains before payers do — improving first-pass yield.
               </CardContent>
             </Card>
 
             <Card className="rounded-2xl">
-              <CardHeader>
-                <CardTitle>Self-Repairing Denials</CardTitle>
-              </CardHeader>
+              <CardHeader><CardTitle>Self-Repairing Denials</CardTitle></CardHeader>
               <CardContent className="text-slate-600">
-                Mode-B learning suggests ICD/CPT pairs proven to pay under your payers/jurisdictions, with auditable logic.
+                Recommends ICD/CPT pairs proven to pay for your payer mix — with audit-ready reasoning.
               </CardContent>
             </Card>
 
             <Card className="rounded-2xl">
-              <CardHeader>
-                <CardTitle>Audit-Only Oversight</CardTitle>
-              </CardHeader>
+              <CardHeader><CardTitle>Audit-Only Oversight</CardTitle></CardHeader>
               <CardContent className="text-slate-600">
-                Humans supervise; the engine explains. Every fix, reason code, and outcome is logged for compliance.
+                Humans supervise; the engine explains every action clearly and traceably.
               </CardContent>
             </Card>
           </div>
@@ -170,31 +171,17 @@ export default function MEDVOXALanding() {
             <TrendingUp className="h-5 w-5"/>
             <h2 className="text-3xl font-bold">Progress & Roadmap</h2>
           </div>
+
           <div className="grid lg:grid-cols-2 gap-8 items-start">
             <Card className="rounded-2xl">
               <CardHeader><CardTitle>Milestones</CardTitle></CardHeader>
               <CardContent className="space-y-6">
-                <RoadmapItem
-                  num="1"
-                  title="Phase 1 — Data Standardization & Validation"
-                  desc="Unified claims/ERA datasets, validation scripts, and clean data gates."
-                />
-                <RoadmapItem
-                  num="2"
-                  title="Phase 2 — Novitas Self-Repair Engine"
-                  desc="Smart recommendations for CO-16/50/97/109 & PR-204 using paid-history."
-                />
-                <RoadmapItem
-                  num="3"
-                  title="Phase 3 — CMS-1500 Generator"
-                  desc="Flattened, pixel-perfect claim forms via ReportLab; payer-specific blocks."
-                />
-                <RoadmapItem
-                  icon={<Zap className="h-4 w-4"/>}
-                  highlight
-                  title="Next — Adaptive Rules & Worklists"
-                  desc="Dynamic queues by payer/J-code/CPT with explainable actions."
-                />
+
+                <RoadmapItem num="1" title="Phase 1 — Data Standardization" desc="Unified claims/ERA datasets and validation gates." />
+                <RoadmapItem num="2" title="Phase 2 — Denial Self-Repair Engine" desc="CO-16/50/97/109 & PR-204 suggestion logic." />
+                <RoadmapItem num="3" title="Phase 3 — CMS-1500 Generator" desc="Flattened form generation and payer layouts." />
+                <RoadmapItem icon={<Zap className="h-4 w-4"/>} highlight title="Next — Adaptive Rules & Worklists" desc="Dynamic queues with explainable logic." />
+
               </CardContent>
             </Card>
 
@@ -209,7 +196,7 @@ export default function MEDVOXALanding() {
                     </div>
                   ))}
                 </div>
-                <div className="text-xs text-muted-foreground">*Metrics are illustrative; connect to live KPIs later.</div>
+                <div className="text-xs text-muted-foreground">* Metrics illustrative; live dashboards later.</div>
               </CardContent>
             </Card>
           </div>
@@ -223,12 +210,13 @@ export default function MEDVOXALanding() {
             <Shield className="h-5 w-5"/>
             <h2 className="text-3xl font-bold">Value for Providers</h2>
           </div>
+
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { icon: <TrendingUp className="h-5 w-5"/>, title: "Faster Cash", desc: "Shorter A/R cycles with higher first-pass yield."},
-              { icon: <CheckCircle2 className="h-5 w-5"/>, title: "Fewer Denials", desc: "ERA-led root causes; proactive fixes before resubmission."},
-              { icon: <LineChart className="h-5 w-5"/>, title: "Management Reporting", desc: "Provider-centric KPIs with audit-critical detail."},
-              { icon: <Shield className="h-5 w-5"/>, title: "Compliance-Ready", desc: "Full traceability — who changed what, when, and why."}
+              { icon: <TrendingUp className="h-5 w-5"/>, title: "Faster Cash", desc: "Shorter A/R cycles and improved liquidity."},
+              { icon: <CheckCircle2 className="h-5 w-5"/>, title: "Fewer Denials", desc: "Root cause prevention + automated corrections."},
+              { icon: <LineChart className="h-5 w-5"/>, title: "Management Reporting", desc: "Clear provider-centric operational KPIs."},
+              { icon: <Shield className="h-5 w-5"/>, title: "Compliance-Ready", desc: "Every action is traceable and audit-logged."}
             ].map((item) => (
               <Card key={item.title} className="rounded-2xl">
                 <CardHeader><CardTitle className="flex items-center gap-2">{item.icon}{item.title}</CardTitle></CardHeader>
@@ -244,9 +232,10 @@ export default function MEDVOXALanding() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold mb-10">How it works</h2>
           <div className="grid md:grid-cols-4 gap-6">
-            {["Ingest", "Validate", "Repair", "Submit"].map((step, i) => (
-              <Step key={step} step={i+1} label={step} />
-            ))}
+            <Step step={1} label="Ingest" />
+            <Step step={2} label="Validate" />
+            <Step step={3} label="Repair" />
+            <Step step={4} label="Submit" />
           </div>
         </div>
       </section>
@@ -256,25 +245,32 @@ export default function MEDVOXALanding() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold mb-6">Security & Compliance</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            <SecurityCard title="HIPAA-mindful by design" desc="PHI minimization; strict role-based access; encrypted data at rest & in transit." />
-            <SecurityCard title="Audit Logging" desc="Immutable logs for every change and submission, exportable for review." />
-            <SecurityCard title="Payer-grade Validation" desc="Pre-adjudication checks tuned per payer/jurisdiction to reduce surprises." />
+            <SecurityCard title="HIPAA-mindful by design" desc="PHI minimization; encryption at rest and in transit." />
+            <SecurityCard title="Audit Logging" desc="Immutable trace of every correction and submission." />
+            <SecurityCard title="Payer-grade Validation" desc="Pre-adjudication checks tuned per payer region." />
           </div>
         </div>
       </section>
 
-      {/* CONTACT */}
+      {/* ✅ CONTACT — TEMPORARY SIMPLE EMAIL BLOCK */}
       <section id="contact" className="py-20 bg-white border-t">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-6 text-center">Request a Demo</h2>
-          <p className="text-slate-600 mb-10 max-w-xl mx-auto text-center">
-            Tell us about your organization and we’ll reach out to schedule a personalized walkthrough.
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold mb-4">Request a Demo</h2>
+          <p className="text-slate-600 mb-8 max-w-xl mx-auto text-center">
+            We’re currently onboarding through direct scheduling.
+            Reach out anytime:
           </p>
 
-          <DemoForm />
-          <div className="mt-6 text-sm text-slate-500 text-center">
-            By submitting, you confirm you won’t include PHI. We use submitted details only to contact you about MEDVOXA.
-          </div>
+          <a
+            href="mailto:hello@medvoxa.com"
+            className="inline-block rounded-2xl bg-slate-900 text-white px-6 py-3 text-lg hover:bg-slate-700 transition"
+          >
+            hello@medvoxa.com
+          </a>
+
+          <p className="mt-6 text-sm text-slate-500">
+            You’ll receive a response within one business day.
+          </p>
         </div>
       </section>
 
@@ -284,10 +280,12 @@ export default function MEDVOXALanding() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
               <span className="h-7 w-7 rounded-xl bg-slate-900 text-white grid place-items-center text-sm">M</span>
-              <span className="text-sm text-slate-600">© {new Date().getFullYear()} MEDVOXA. All rights reserved.</span>
+              <span className="text-sm text-slate-600">
+                © {new Date().getFullYear()} MEDVOXA. All rights reserved.
+              </span>
             </div>
             <div className="text-xs text-slate-500">
-              MEDVOXA is a workflow-first RCM software platform. We do not store PHI on this website. For support or inquiries, email hello@medvoxa.com.
+              MEDVOXA is a workflow-first RCM software platform. No PHI is stored on this website.
             </div>
           </div>
         </div>
@@ -297,6 +295,7 @@ export default function MEDVOXALanding() {
   );
 }
 
+/* UTILITY COMPONENTS — unchanged */
 function RoadmapItem({ num, icon, title, desc, highlight }: any) {
   return (
     <div className="flex items-start gap-3">
@@ -317,10 +316,10 @@ function Step({ step, label }: any) {
       <div className="absolute -top-3 left-4 rounded-full bg-slate-900 text-white h-8 w-8 grid place-items-center text-sm">{step}</div>
       <div className="font-semibold mb-2">{label}</div>
       <p className="text-sm text-slate-600">
-        {step === 1 && "Claims, lines, denials, and ERA unify into a standard model."}
-        {step === 2 && "Clean-claim checks and payer rules prevent rework."}
-        {step === 3 && "AI-assisted suggestions fix ICD/CPT and documentation gaps."}
-        {step === 4 && "Flattened forms and EDI ready for submission — with audit logs."}
+        {step === 1 && "Claims and remittances are unified into a clean data layer."}
+        {step === 2 && "Clean-claim validations and payer-specific rules applied."}
+        {step === 3 && "AI-assisted suggestions resolve denials and coding gaps."}
+        {step === 4 && "Claims are submitted with full audit traceability."}
       </p>
     </div>
   );
@@ -332,51 +331,5 @@ function SecurityCard({ title, desc }: any) {
       <CardHeader><CardTitle>{title}</CardTitle></CardHeader>
       <CardContent className="text-slate-600">{desc}</CardContent>
     </Card>
-  );
-}
-
-/* —— Contact Form Component —— */
-function DemoForm() {
-  const [status, setStatus] = React.useState<"idle"|"sending"|"ok"|"err">("idle");
-  const formRef = React.useRef<HTMLFormElement>(null);
-
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setStatus("sending");
-    const fd = new FormData(e.currentTarget);
-    const payload = Object.fromEntries(fd.entries());
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      if (!res.ok) throw new Error("Request failed");
-      setStatus("ok");
-      formRef.current?.reset();
-    } catch (err) {
-      setStatus("err");
-    }
-  }
-
-  return (
-    <form ref={formRef} onSubmit={onSubmit} className="grid gap-4 max-w-xl mx-auto">
-      <div className="grid md:grid-cols-2 gap-4">
-        <Input name="name" placeholder="Full Name" required />
-        <Input name="email" type="email" placeholder="Work Email" required />
-      </div>
-      <Input name="organization" placeholder="Organization" required />
-      <Input name="phone" placeholder="Phone (optional)" />
-      <Textarea name="message" placeholder="What problem are you trying to solve?" rows={4} required />
-      <div className="flex items-center justify-between">
-        <div className="text-xs text-muted-foreground">We’ll reply within 1 business day.</div>
-        <Button disabled={status==="sending"} className="rounded-2xl" type="submit">
-          {status==="sending" ? "Sending..." : "Send"}
-        </Button>
-      </div>
-      {status==="ok" && <div className="text-emerald-600 text-sm text-center">Thanks — we’ve received your request. We’ll reach out at the email you provided.</div>}
-      {status==="err" && <div className="text-red-600 text-sm text-center">Something went wrong. Please try again or email hello@medvoxa.com.</div>}
-    </form>
   );
 }
