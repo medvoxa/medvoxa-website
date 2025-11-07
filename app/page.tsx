@@ -2,6 +2,13 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
+
+import HeroAIBackground from "@/components/HeroAIBackground";
+import HeroRibbon from "@/components/HeroRibbon";
+import HeroGlow from "@/components/hero-glow";
+import FadeIn from "@/components/FadeIn";
+import AdaptiveWave from "@/components/AdaptiveWave";
+
 import {
   BarChart,
   Bar,
@@ -18,25 +25,12 @@ import { Badge } from "@/components/ui/badge";
 
 import {
   CheckCircle2,
-  TrendingUp,
   Shield,
-  Zap,
   LineChart,
-  Rocket,
   ArrowRight,
 } from "lucide-react";
 
-import HeroRibbon from "@/components/hero-ribbon";   // ✅ new
-import FadeIn from "@/components/fade-in";           // ✅ new
-
 // --- DATA ---
-const progressData = [
-  { stage: "Phase 1", metric: 68 },
-  { stage: "Phase 2", metric: 82 },
-  { stage: "Phase 3", metric: 90 },
-  { stage: "Now", metric: 93 },
-];
-
 const kpiData = [
   { label: "Clean Claim Rate", value: "98.6%" },
   { label: "Denial Reduction", value: "-37%" },
@@ -57,7 +51,6 @@ const Pill = ({ children }: { children: React.ReactNode }) => (
   </span>
 );
 
-// --- PAGE ---
 export default function MEDVOXALanding() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-slate-900">
@@ -66,26 +59,25 @@ export default function MEDVOXALanding() {
       <header className="sticky top-0 z-50 backdrop-blur bg-white/70 border-b">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
+            
             <a href="#home" className="flex items-center gap-2 font-semibold text-xl">
-              <span className="h-8 w-8 rounded-2xl bg-slate-900 text-white grid place-items-center">M</span>
+              <span className="h-8 w-8 rounded-2xl bg-[#5A3A2E] text-white grid place-items-center">M</span>
               MEDVOXA
             </a>
 
             <nav className="hidden md:flex items-center gap-6 text-sm">
-              <a href="#vision">Vision</a>
-              <a href="#progress">Progress</a>
+              <a href="/vision">Vision</a>
+              <a href="#engine">Engine</a>
               <a href="#value">Value</a>
               <a href="#how">How</a>
               <a href="#security">Security</a>
+              <a href="/story">Our Story</a>
               <a href="#contact">Contact</a>
             </nav>
 
-            {/* ✅ Smooth-scroll to contact */}
             <Button
               className="rounded-2xl"
-              onClick={() =>
-                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
-              }
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
             >
               Get a demo
             </Button>
@@ -94,14 +86,16 @@ export default function MEDVOXALanding() {
       </header>
 
       {/* HERO */}
-      <section id="home" className="relative overflow-hidden py-10">
-        {/* Apple-style flowing gradient ribbon */}
+      <section id="home" className="relative overflow-hidden py-20">
+        <HeroAIBackground />
         <HeroRibbon />
+        <HeroGlow />
 
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4">
           <div className="grid lg:grid-cols-2 gap-10 items-center py-10">
-            {/* LEFT SIDE */}
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+
+            {/* LEFT */}
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
               <Badge className="mb-4 rounded-full">Autonomous RCM Engine</Badge>
 
               <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
@@ -112,21 +106,16 @@ export default function MEDVOXALanding() {
               </h1>
 
               <p className="mt-4 text-lg text-slate-600 max-w-xl">
-                MEDVOXA reduces denials, accelerates cash, and keeps you audit-ready —
-                using an AI-assisted, workflow-first engine that learns from every remittance.
-                <br/><br/>
-                Seamlessly integrates with your existing billing, clearinghouse, and EMR systems —
-                no migrations required.
+                MEDVOXA reduces denials, accelerates cash, and keeps your RCM operating at peak efficiency —
+                using an engine that learns from every adjudication.
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-3">
-                {/* ✅ Hero CTA opens email */}
+              <div className="mt-6">
                 <a href="mailto:hello@medvoxa.com">
-                  <Button className="rounded-2xl">
+                  <Button className="rounded-2xl bg-[#5A3A2E] hover:bg-[#7B5243] text-white">
                     Request a live demo <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </a>
-                <Button variant="outline" className="rounded-2xl">View roadmap</Button>
               </div>
 
               <div className="mt-6 flex flex-wrap gap-2">
@@ -136,11 +125,13 @@ export default function MEDVOXALanding() {
               </div>
             </motion.div>
 
-            {/* RIGHT SIDE */}
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
+            {/* RIGHT — RCM Snapshot */}
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
               <Card className="rounded-2xl shadow-lg">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2"><LineChart className="h-5 w-5"/> Weekly RCM Snapshot</CardTitle>
+                  <CardTitle className="flex items-center gap-2">
+                    <LineChart className="h-5 w-5"/> Weekly RCM Snapshot
+                  </CardTitle>
                 </CardHeader>
 
                 <CardContent>
@@ -153,7 +144,7 @@ export default function MEDVOXALanding() {
                     ))}
                   </div>
 
-                  <div className="h-72 pb-4 w-full">
+                  <div style={{ width: "100%", height: 300 }}>
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={weeklyRCM}>
                         <CartesianGrid strokeDasharray="3 3" />
@@ -168,125 +159,100 @@ export default function MEDVOXALanding() {
                 </CardContent>
               </Card>
             </motion.div>
+
           </div>
         </div>
       </section>
 
-      {/* VISION — Cinematic, Apple-style */}
-      <section id="vision" className="py-28 relative overflow-hidden">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
+      {/* ENGINE (replaces Progress & Roadmap) */}
+      <section id="engine" className="relative py-28 overflow-hidden">
+        <AdaptiveWave />
+
+        <div className="relative mx-auto max-w-5xl px-6 text-center">
           <FadeIn>
-            <Badge className="mb-4 rounded-full">Why MEDVOXA</Badge>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">The MEDVOXA Engine</h2>
           </FadeIn>
 
-          <FadeIn delay={0.1}>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">
-              The Revenue Cycle Should Improve Itself
-            </h2>
-          </FadeIn>
-
-          <FadeIn delay={0.2}>
+          <FadeIn delay={0.15}>
             <p className="mt-6 text-lg text-slate-600 max-w-3xl mx-auto">
-              Most revenue cycle systems react to denials after the damage occurs.
-              MEDVOXA anticipates, prevents, and corrects — before claims reach the payer.
+              Always learning. Always improving. Designed to eliminate recurrence — not react to it.
             </p>
           </FadeIn>
         </div>
 
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 mt-20 grid md:grid-cols-3 gap-10 text-center">
-          <FadeIn delay={0.3}>
-            <div>
-              <h3 className="text-2xl font-semibold text-slate-900 mb-3">The Problem</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                Manual rework and repeated firefighting. The same denials loop, again and again.
-              </p>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.45}>
-            <div>
-              <h3 className="text-2xl font-semibold text-slate-900 mb-3">The Shift</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                The engine learns from adjudications. Corrections become reusable, explainable, and automatic.
-              </p>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.6}>
-            <div>
-              <h3 className="text-2xl font-semibold text-slate-900 mb-3">The Outcome</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                Denials decrease. Cash accelerates. Oversight becomes audit-native, not labor-bound.
-              </p>
-            </div>
-          </FadeIn>
+        <div className="relative mx-auto max-w-6xl mt-16 grid md:grid-cols-3 gap-10 px-6 text-center">
+          <FadeIn><EngineBlock title="Pattern Learning" desc="Learns from payer outcomes and adjudication feedback." /></FadeIn>
+          <FadeIn delay={0.15}><EngineBlock title="Self-Correction" desc="Suggests or performs validated correction loops automatically." /></FadeIn>
+          <FadeIn delay={0.3}><EngineBlock title="Scalable" desc="Performance increases without needing workforce expansion." /></FadeIn>
         </div>
       </section>
 
-      {/* PROGRESS */}
-      <section id="progress" className="py-20 bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 flex items-center gap-2">
-            <TrendingUp className="h-5 w-5"/>
-            <h2 className="text-3xl font-bold">Progress & Roadmap</h2>
-          </div>
+      {/* IMPACT / VALUE */}
+<section id="value" className="py-28 bg-white">
+  <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-          <div className="grid lg:grid-cols-2 gap-8 items-start">
-            <Card className="rounded-2xl">
-              <CardHeader><CardTitle>Milestones</CardTitle></CardHeader>
-              <CardContent className="space-y-6">
-                <RoadmapItem num="1" title="Phase 1 — Data Standardization" desc="Unified claims/ERA datasets and validation gates." />
-                <RoadmapItem num="2" title="Phase 2 — Denial Self-Repair Engine" desc="CO-16/50/97/109 & PR-204 suggestion logic." />
-                <RoadmapItem num="3" title="Phase 3 — CMS-1500 Generator" desc="Flattened form generation and payer layouts." />
-                <RoadmapItem icon={<Zap className="h-4 w-4"/>} highlight title="Next — Adaptive Rules & Worklists" desc="Dynamic queues with explainable logic." />
-              </CardContent>
-            </Card>
+    {/* Section Heading */}
+    <div className="text-center mb-16">
+      <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">
+        The Impact for Providers
+      </h2>
+      <p className="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">
+        MEDVOXA drives measurable financial and operational improvement —
+        without expanding your workforce.
+      </p>
+    </div>
 
-            <Card className="rounded-2xl">
-              <CardHeader><CardTitle>Readiness Index</CardTitle></CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  {progressData.map((p) => (
-                    <div key={p.stage} className="rounded-xl border p-4">
-                      <div className="text-xs text-muted-foreground">{p.stage}</div>
-                      <div className="mt-1 text-2xl font-bold">{p.metric}%</div>
-                    </div>
-                  ))}
-                </div>
-                <div className="text-xs text-muted-foreground">* Metrics illustrative; live dashboards later.</div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+    {/* Key Outcomes */}
+    <div className="grid md:grid-cols-3 gap-6 mb-20">
+      <div className="text-center py-10 rounded-2xl border bg-slate-50">
+        <div className="text-4xl font-bold text-[#5A3A2E]">↑ 8.4 Days</div>
+        <div className="mt-2 text-sm text-slate-600">Reduction in Days in A/R</div>
+      </div>
 
-      {/* VALUE */}
-      <section id="value" className="py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 flex items-center gap-2">
-            <Shield className="h-5 w-5"/>
-            <h2 className="text-3xl font-bold">Value for Providers</h2>
-          </div>
+      <div className="text-center py-10 rounded-2xl border bg-slate-50">
+        <div className="text-4xl font-bold text-[#5A3A2E]">98.6%</div>
+        <div className="mt-2 text-sm text-slate-600">Clean Claim Rate Achieved</div>
+      </div>
 
-        <div className="grid md:grid-cols-4 gap-6">
-          {[
-            { icon: <TrendingUp className="h-5 w-5"/>, title: "Faster Cash", desc: "Shorter A/R cycles and improved liquidity."},
-            { icon: <CheckCircle2 className="h-5 w-5"/>, title: "Fewer Denials", desc: "Root cause prevention + automated corrections."},
-            { icon: <LineChart className="h-5 w-5"/>, title: "Management Reporting", desc: "Clear provider-centric operational KPIs."},
-            { icon: <Shield className="h-5 w-5"/>, title: "Compliance-Ready", desc: "Every action is traceable and audit-logged."}
-          ].map((item) => (
-            <Card key={item.title} className="rounded-2xl">
-              <CardHeader><CardTitle className="flex items-center gap-2">{item.icon}{item.title}</CardTitle></CardHeader>
-              <CardContent className="text-slate-600">{item.desc}</CardContent>
-            </Card>
-          ))}
-        </div>
-        </div>
-      </section>
+      <div className="text-center py-10 rounded-2xl border bg-slate-50">
+        <div className="text-4xl font-bold text-[#5A3A2E]">-37%</div>
+        <div className="mt-2 text-sm text-slate-600">Denial Recurrence Reduction</div>
+      </div>
+    </div>
+
+    {/* Leverage Pillars */}
+    <div className="grid md:grid-cols-3 gap-8">
+      <div className="p-8 rounded-2xl border">
+        <h3 className="text-xl font-semibold text-slate-900">Operational Leverage</h3>
+        <p className="mt-3 text-slate-600">
+          The engine eliminates repeated rework by internalizing payer and coding outcomes,
+          freeing teams to focus on oversight, not correction.
+        </p>
+      </div>
+
+      <div className="p-8 rounded-2xl border">
+        <h3 className="text-xl font-semibold text-slate-900">Financial Continuity</h3>
+        <p className="mt-3 text-slate-600">
+          Fewer interruptions in reimbursement flow and greater predictability in revenue,
+          without increasing headcount.
+        </p>
+      </div>
+
+      <div className="p-8 rounded-2xl border">
+        <h3 className="text-xl font-semibold text-slate-900">Audit Confidence</h3>
+        <p className="mt-3 text-slate-600">
+          Every correction and submission step is logged and explainable, strengthening compliance posture.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
       {/* HOW */}
       <section id="how" className="py-20 bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4">
           <h2 className="text-3xl font-bold mb-10">How it works</h2>
           <div className="grid md:grid-cols-4 gap-6">
             <Step step={1} label="Ingest" />
@@ -299,61 +265,43 @@ export default function MEDVOXALanding() {
 
       {/* SECURITY */}
       <section id="security" className="py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4">
           <h2 className="text-3xl font-bold mb-6">Security & Compliance</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            <SecurityCard title="HIPAA-mindful by design" desc="PHI minimization; encryption at rest and in transit." />
+            <SecurityCard title="HIPAA-mindful by design" desc="PHI minimization; encryption end-to-end." />
             <SecurityCard title="Audit Logging" desc="Immutable trace of every correction and submission." />
             <SecurityCard title="Payer-grade Validation" desc="Pre-adjudication checks tuned per payer region." />
           </div>
         </div>
       </section>
 
-      {/* CONTACT — T1 Temporary Email Mode */}
-      <section id="contact" className="py-20 bg-white border-t">
+      {/* CONTACT */}
+      <section id="contact" className="py-20 border-t bg-white">
         <div className="mx-auto max-w-3xl px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Request a Demo</h2>
-          <p className="text-slate-600 mb-6 max-w-xl mx-auto">
-            We're scheduling private previews. Reach out and we’ll coordinate your walkthrough.
-          </p>
+          <p className="text-slate-600 mb-6">We are onboarding select provider groups.</p>
 
           <a href="mailto:hello@medvoxa.com" className="text-lg font-medium text-slate-900 hover:underline">
             hello@medvoxa.com
           </a>
-
-          <p className="text-xs text-slate-500 mt-4">No PHI should be included in emails. We reply in 1 business day.</p>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t">
-        <div className="mx-auto max-w-7xl px-4 py-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <span className="h-7 w-7 rounded-xl bg-slate-900 text-white grid place-items-center text-sm">M</span>
-              <span className="text-sm text-slate-600">© {new Date().getFullYear()} MEDVOXA. All rights reserved.</span>
-            </div>
-            <div className="text-xs text-slate-500">
-              No PHI is stored on this website.
-            </div>
-          </div>
-        </div>
+      <footer className="border-t py-10 text-center text-sm text-slate-500">
+        © {new Date().getFullYear()} MEDVOXA — All Rights Reserved.
       </footer>
+
     </div>
   );
 }
 
-// --- SMALL UTIL COMPONENTS
-function RoadmapItem({ num, icon, title, desc, highlight }: any) {
+// --- Sub-Components ---
+function EngineBlock({ title, desc }: any) {
   return (
-    <div className="flex items-start gap-3">
-      <div className={`h-8 w-8 rounded-full ${highlight ? "bg-emerald-600" : "bg-slate-900"} text-white grid place-items-center`}>
-        {icon || num}
-      </div>
-      <div>
-        <div className="font-semibold">{title}</div>
-        <p className="text-sm text-slate-600">{desc}</p>
-      </div>
+    <div className="px-6">
+      <h3 className="text-xl font-semibold text-slate-900 mb-3">{title}</h3>
+      <p className="text-slate-600 text-sm leading-relaxed">{desc}</p>
     </div>
   );
 }
@@ -361,7 +309,7 @@ function RoadmapItem({ num, icon, title, desc, highlight }: any) {
 function Step({ step, label }: any) {
   return (
     <div className="relative rounded-2xl border p-6">
-      <div className="absolute -top-3 left-4 rounded-full bg-slate-900 text-white h-8 w-8 grid place-items-center text-sm">{step}</div>
+      <div className="absolute -top-3 left-4 rounded-full bg-[#5A3A2E] text-white h-8 w-8 grid place-items-center text-sm">{step}</div>
       <div className="font-semibold mb-2">{label}</div>
       <p className="text-sm text-slate-600">
         {step === 1 && "Claims and remittances are unified into a clean data layer."}

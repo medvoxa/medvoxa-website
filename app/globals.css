@@ -120,3 +120,10 @@
     @apply bg-background text-foreground;
   }
 }
+.film-grain {
+  background-image: url('/grain.png');
+  background-size: 400px;
+  mix-blend-mode: overlay;
+  opacity: 0.32;
+  pointer-events: none;
+}
