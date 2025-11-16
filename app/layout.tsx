@@ -1,31 +1,24 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Inter } from "next/font/google";
+import NavBar from "@/components/NavBar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "MEDVOXA — Autonomous RCM Engine",
-  description: "Self-repairing revenue cycle management engine for providers.",
+export const metadata = {
+  title: "MEDVOXA",
+  description: "Autonomous RCM Engine",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head>
-        {/* Plausible Analytics */}
-        <script defer data-domain="medvoxa.com" src="https://plausible.io/js/script.js"></script>
-      </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={inter.className + " bg-gradient-to-b from-white to-slate-50 text-slate-900"}>
+        
+        {/* Global Navigation */}
+        <NavBar />
+
         {children}
+
       </body>
     </html>
   );

@@ -55,36 +55,6 @@ export default function MEDVOXALanding() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-slate-900">
 
-      {/* HEADER */}
-      <header className="sticky top-0 z-50 backdrop-blur bg-white/70 border-b">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            
-            <a href="#home" className="flex items-center gap-2 font-semibold text-xl">
-              <span className="h-8 w-8 rounded-2xl bg-[#5A3A2E] text-white grid place-items-center">M</span>
-              MEDVOXA
-            </a>
-
-            <nav className="hidden md:flex items-center gap-6 text-sm">
-              <a href="/vision">Vision</a>
-              <a href="#engine">Engine</a>
-              <a href="#value">Value</a>
-              <a href="#how">How</a>
-              <a href="#security">Security</a>
-              <a href="/story">Our Story</a>
-              <a href="#contact">Contact</a>
-            </nav>
-
-            <Button
-              className="rounded-2xl"
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              Get a demo
-            </Button>
-          </div>
-        </div>
-      </header>
-
       {/* HERO */}
       <section id="home" className="relative overflow-hidden py-20">
         <HeroAIBackground />
@@ -164,7 +134,7 @@ export default function MEDVOXALanding() {
         </div>
       </section>
 
-      {/* ENGINE (replaces Progress & Roadmap) */}
+      {/* ENGINE */}
       <section id="engine" className="relative py-28 overflow-hidden">
         <AdaptiveWave />
 
@@ -187,68 +157,41 @@ export default function MEDVOXALanding() {
         </div>
       </section>
 
-      {/* IMPACT / VALUE */}
-<section id="value" className="py-28 bg-white">
-  <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* VALUE / IMPACT */}
+      <section id="value" className="py-28">
+        <div className="mx-auto max-w-7xl px-4 text-center">
+          <h2 className="text-4xl font-bold mb-3">The Result</h2>
+          <p className="text-slate-600 max-w-2xl mx-auto mb-16 text-lg">
+            MEDVOXA reduces rework, prevents denials before they occur, and stabilizes revenue — without increasing staff.
+          </p>
 
-    {/* Section Heading */}
-    <div className="text-center mb-16">
-      <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">
-        The Impact for Providers
-      </h2>
-      <p className="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">
-        MEDVOXA drives measurable financial and operational improvement —
-        without expanding your workforce.
-      </p>
-    </div>
+          <div className="grid md:grid-cols-3 gap-6">
 
-    {/* Key Outcomes */}
-    <div className="grid md:grid-cols-3 gap-6 mb-20">
-      <div className="text-center py-10 rounded-2xl border bg-slate-50">
-        <div className="text-4xl font-bold text-[#5A3A2E]">↑ 8.4 Days</div>
-        <div className="mt-2 text-sm text-slate-600">Reduction in Days in A/R</div>
-      </div>
+            <Card className="rounded-2xl border p-8">
+              <h3 className="text-2xl font-semibold mb-2">Higher Acceptance Rates</h3>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Claims submitted cleanly the first time — fewer corrections, fewer delays.
+              </p>
+            </Card>
 
-      <div className="text-center py-10 rounded-2xl border bg-slate-50">
-        <div className="text-4xl font-bold text-[#5A3A2E]">98.6%</div>
-        <div className="mt-2 text-sm text-slate-600">Clean Claim Rate Achieved</div>
-      </div>
+            <Card className="rounded-2xl border p-8">
+              <h3 className="text-2xl font-semibold mb-2">Faster Reimbursement</h3>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Automated corrections and structured submissions shorten payment cycles.
+              </p>
+            </Card>
 
-      <div className="text-center py-10 rounded-2xl border bg-slate-50">
-        <div className="text-4xl font-bold text-[#5A3A2E]">-37%</div>
-        <div className="mt-2 text-sm text-slate-600">Denial Recurrence Reduction</div>
-      </div>
-    </div>
+            <Card className="rounded-2xl border p-8">
+              <h3 className="text-2xl font-semibold mb-2">Stable, Predictable Revenue</h3>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Workload does not depend on individuals — the system learns and improves continuously.
+              </p>
+            </Card>
 
-    {/* Leverage Pillars */}
-    <div className="grid md:grid-cols-3 gap-8">
-      <div className="p-8 rounded-2xl border">
-        <h3 className="text-xl font-semibold text-slate-900">Operational Leverage</h3>
-        <p className="mt-3 text-slate-600">
-          The engine eliminates repeated rework by internalizing payer and coding outcomes,
-          freeing teams to focus on oversight, not correction.
-        </p>
-      </div>
+          </div>
 
-      <div className="p-8 rounded-2xl border">
-        <h3 className="text-xl font-semibold text-slate-900">Financial Continuity</h3>
-        <p className="mt-3 text-slate-600">
-          Fewer interruptions in reimbursement flow and greater predictability in revenue,
-          without increasing headcount.
-        </p>
-      </div>
-
-      <div className="p-8 rounded-2xl border">
-        <h3 className="text-xl font-semibold text-slate-900">Audit Confidence</h3>
-        <p className="mt-3 text-slate-600">
-          Every correction and submission step is logged and explainable, strengthening compliance posture.
-        </p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
+        </div>
+      </section>
 
       {/* HOW */}
       <section id="how" className="py-20 bg-white">
