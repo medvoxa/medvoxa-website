@@ -48,48 +48,43 @@ export default function NavBar() {
         </div>
       </div>
 
-      {/* --- MOBILE DRAWER --- */}
-      {open && (
-        <div className="fixed inset-0 z-[999] 
-                        bg-[#E8DCD5] backdrop-blur-md 
-                        px-6 py-6 overflow-y-auto shadow-xl">
+{/* --- MOBILE DRAWER --- */}
+{open && (
+  <div className="fixed inset-0 z-[60] bg-[#5A3A2E]/95 text-white backdrop-blur-sm px-6 py-4 overflow-y-auto">
+    
+    {/* Header row */}
+    <div className="flex items-center justify-between mb-6">
+      <span className="font-semibold text-lg flex items-center gap-2">
+        <span className="h-8 w-8 rounded-2xl bg-white text-[#5A3A2E] grid place-items-center text-sm">
+          M
+        </span>
+        <span>MEDVOXA</span>
+      </span>
 
-          {/* Header */}
-          <div className="flex items-center justify-between mb-8">
-            <span className="font-semibold text-lg flex items-center gap-2">
-              <span className="h-8 w-8 rounded-2xl bg-[#5A3A2E] text-white grid place-items-center text-sm">
-                M
-              </span>
-              <span className="text-[#2A2220]">MEDVOXA</span>
-            </span>
+    <button onClick={() => setOpen(false)}>
+      <X size={30} className="text-white" />
+    </button>
+    </div>
 
-            <button onClick={() => setOpen(false)}>
-              <X size={34} className="text-[#2A2220]" />
-            </button>
-          </div>
+    {/* Menu Links */}
+    <nav className="flex flex-col gap-6 text-lg font-medium">
+      <a href="/" onClick={() => setOpen(false)}>Home</a>
+      <a href="/about" onClick={() => setOpen(false)}>About Us</a>
+      <a href="/services" onClick={() => setOpen(false)}>Our Services</a>
+      <a href="/providers" onClick={() => setOpen(false)}>Providers & Hospitals</a>
+      <a href="/investors" onClick={() => setOpen(false)}>Investors</a>
+      <a href="/careers" onClick={() => setOpen(false)}>Careers</a>
+      <a href="/contact" onClick={() => setOpen(false)}>Contact</a>
+    </nav>
 
-          {/* Menu Links */}
-          <nav className="flex flex-col gap-6 text-xl font-semibold text-[#2A2220]">
-            <a href="/" onClick={() => setOpen(false)}>Home</a>
-            <a href="/about" onClick={() => setOpen(false)}>About Us</a>
-            <a href="/services" onClick={() => setOpen(false)}>Our Services</a>
-            <a href="/providers" onClick={() => setOpen(false)}>Providers & Hospitals</a>
-            <a href="/investors" onClick={() => setOpen(false)}>Investors</a>
-            <a href="/careers" onClick={() => setOpen(false)}>Careers</a>
-            <a href="/contact" onClick={() => setOpen(false)}>Contact</a>
-          </nav>
-
-          {/* CTA Button */}
-          <div className="mt-10">
-            <Button
-              className="w-full rounded-xl py-3 bg-[#5A3A2E] text-white text-lg"
-              onClick={() => (window.location.href = "/contact")}
-            >
-              Get a demo
-            </Button>
-          </div>
-        </div>
-      )}
-    </header>
-  );
-}
+    {/* CTA */}
+    <div className="mt-10">
+      <Button
+        className="w-full rounded-xl py-3 bg-white text-[#5A3A2E] text-lg font-bold"
+        onClick={() => (window.location.href = "/contact")}
+      >
+        Get a demo
+      </Button>
+    </div>
+  </div>
+)}
