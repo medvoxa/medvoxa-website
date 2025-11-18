@@ -8,7 +8,7 @@ export default function NavBar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur bg-white/80 border-b border-[#C9B8AE]">
+    <header className="sticky top-0 z-[99999] backdrop-blur bg-white/80 border-b border-[#C9B8AE]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 items-center justify-between">
 
@@ -41,7 +41,7 @@ export default function NavBar() {
             </Button>
           </div>
 
-          {/* Hamburger menu */}
+          {/* Hamburger */}
           <button className="md:hidden" onClick={() => setOpen(true)}>
             <Menu size={28} className="text-[#2A2220]" />
           </button>
@@ -50,9 +50,8 @@ export default function NavBar() {
 
       {/* MOBILE DRAWER */}
       {open && (
-        <div className="fixed inset-0 z-[999] bg-[#F4E9E4] text-[#2A2220] px-6 py-6 overflow-y-auto">
-          
-          {/* Header Row */}
+        <div className="fixed inset-0 z-[999999] bg-[#F4E9E4]/95 text-[#2A2220] px-6 py-6 overflow-y-auto">
+
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-2 font-semibold text-lg">
               <span className="h-8 w-8 rounded-2xl bg-[#5A3A2E] text-white grid place-items-center text-sm">
@@ -66,7 +65,6 @@ export default function NavBar() {
             </button>
           </div>
 
-          {/* Menu Items */}
           <nav className="flex flex-col gap-6 text-lg font-medium">
             <a href="/" onClick={() => setOpen(false)}>Home</a>
             <a href="/about" onClick={() => setOpen(false)}>About Us</a>
@@ -77,7 +75,6 @@ export default function NavBar() {
             <a href="/contact" onClick={() => setOpen(false)}>Contact</a>
           </nav>
 
-          {/* CTA Button */}
           <div className="mt-10">
             <Button
               className="w-full rounded-xl py-3 bg-[#5A3A2E] text-white text-lg"
