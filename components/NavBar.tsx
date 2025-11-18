@@ -25,7 +25,7 @@ export default function NavBar() {
             <a href="/" className="hover:underline">Home</a>
             <a href="/about" className="hover:underline">About Us</a>
             <a href="/services" className="hover:underline">Our Services</a>
-            <a href="/providers" className="hover:underline">Providers & Hospitals</a>
+            <a href="/providers" className="hover:underline">Providers &amp; Hospitals</a>
             <a href="/investors" className="hover:underline">Investors</a>
             <a href="/careers" className="hover:underline">Careers</a>
             <a href="/contact" className="hover:underline">Contact</a>
@@ -41,7 +41,7 @@ export default function NavBar() {
             </Button>
           </div>
 
-          {/* Hamburger (Mobile only) */}
+          {/* Mobile Hamburger */}
           <button className="md:hidden" onClick={() => setOpen(true)}>
             <Menu size={28} className="text-[#2A2220]" />
           </button>
@@ -50,9 +50,12 @@ export default function NavBar() {
 
       {/* --- MOBILE DRAWER --- */}
       {open && (
-        <div className="fixed inset-0 z-[60] bg-[#F2E8E4]/95 backdrop-blur-sm px-6 py-4 overflow-y-auto">
-          {/* Header row */}
-          <div className="flex items-center justify-between mb-6">
+        <div className="fixed inset-0 z-[999] 
+                        bg-[#E8DCD5] backdrop-blur-md 
+                        px-6 py-6 overflow-y-auto shadow-xl">
+
+          {/* Header */}
+          <div className="flex items-center justify-between mb-8">
             <span className="font-semibold text-lg flex items-center gap-2">
               <span className="h-8 w-8 rounded-2xl bg-[#5A3A2E] text-white grid place-items-center text-sm">
                 M
@@ -61,12 +64,12 @@ export default function NavBar() {
             </span>
 
             <button onClick={() => setOpen(false)}>
-              <X size={30} className="text-[#2A2220]" />
+              <X size={34} className="text-[#2A2220]" />
             </button>
           </div>
 
           {/* Menu Links */}
-          <nav className="flex flex-col gap-6 text-lg font-medium text-[#2A2220]">
+          <nav className="flex flex-col gap-6 text-xl font-semibold text-[#2A2220]">
             <a href="/" onClick={() => setOpen(false)}>Home</a>
             <a href="/about" onClick={() => setOpen(false)}>About Us</a>
             <a href="/services" onClick={() => setOpen(false)}>Our Services</a>
@@ -76,7 +79,7 @@ export default function NavBar() {
             <a href="/contact" onClick={() => setOpen(false)}>Contact</a>
           </nav>
 
-          {/* CTA */}
+          {/* CTA Button */}
           <div className="mt-10">
             <Button
               className="w-full rounded-xl py-3 bg-[#5A3A2E] text-white text-lg"
