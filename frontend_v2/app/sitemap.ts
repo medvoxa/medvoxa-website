@@ -1,35 +1,43 @@
-import { getAllPosts } from "@/lib/blog";
+import { MetadataRoute } from "next";
 
-export default function sitemap() {
+export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://medvoxa.com";
 
-  const staticRoutes = [
-    "",
-    "/about",
-    "/contact",
-    "/careers",
-    "/pricing",
-    "/providers",
-    "/partner-program",
-    "/investors",
-    "/solutions",
-    "/solutions/rcm-automation",
-    "/solutions/intelligent-claims",
+  return [
+    {
+      url: base,
+      lastModified: new Date().toISOString(),
+      priority: 1,
+    },
+    {
+      url: `${base}/about`,
+      lastModified: new Date().toISOString(),
+      priority: 0.8,
+    },
+    {
+      url: `${base}/services`,
+      lastModified: new Date().toISOString(),
+      priority: 0.8,
+    },
+    {
+      url: `${base}/providers`,
+      lastModified: new Date().toISOString(),
+      priority: 0.8,
+    },
+    {
+      url: `${base}/investors`,
+      lastModified: new Date().toISOString(),
+      priority: 0.8,
+    },
+    {
+      url: `${base}/careers`,
+      lastModified: new Date().toISOString(),
+      priority: 0.7,
+    },
+    {
+      url: `${base}/contact`,
+      lastModified: new Date().toISOString(),
+      priority: 0.7,
+    },
   ];
-
-  const blogPosts = getAllPosts().map((post) => ({
-    url: `${base}/blog/${post.slug}`,
-    lastModified: post.date,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
-  const pages = staticRoutes.map((route) => ({
-    url: base + route,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "weekly",
-    priority: route === "" ? 1.0 : 0.8,
-  }));
-
-  return [...pages, ...blogPosts];
 }
