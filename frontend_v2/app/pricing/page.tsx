@@ -151,7 +151,7 @@ export default function PricingPage() {
         <div className="grid md:grid-cols-3 gap-6">
           <PriceCard
             title="Starter"
-            price="$199 / month"
+            price="$499 / month"
             features={[
               "Unlimited claims",
               "AI-assisted scrubber",
@@ -164,7 +164,7 @@ export default function PricingPage() {
 
           <PriceCard
             title="Professional"
-            price="$499 / month"
+            price="$999 / month"
             features={[
               "Everything in Starter",
               "Advanced NCCI + LCD/NCD",
@@ -234,19 +234,19 @@ export default function PricingPage() {
         <div className="grid md:grid-cols-3 gap-6">
           <UnlimitedCard
             title="Unlimited AR"
-            price="$799 / month"
+            price="$2,888 / month"
             features={["Unlimited follow-ups", "Unlimited portal work", "Dedicated AR specialist"]}
           />
 
           <UnlimitedCard
             title="AR + Denials"
-            price="$1,199 / month"
+            price="$3,788 / month"
             features={["AR follow-up", "Denial repair", "Appeal filing"]}
           />
 
           <UnlimitedCard
             title="Full RCM"
-            price="$1,899 / month"
+            price="$4,688 / month"
             features={["AR + Denials", "Payment posting", "RCM concierge"]}
           />
         </div>
