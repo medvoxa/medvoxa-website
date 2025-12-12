@@ -2,20 +2,21 @@ import { NextResponse } from "next/server";
 import crypto from "crypto";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // In-memory rate limit per IP
 const rateLimit = new Map<string, number>();
 
 export async function POST(req: Request) {
   try {
+    // SAFE: Initialize Resend inside handler (prevents Vercel build crash)
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
     // Extract IP
     const ip =
       req.headers.get("x-forwarded-for")?.split(",")[0] ||
       req.headers.get("x-real-ip") ||
       "unknown";
 
-    // Rate limit (5 seconds)
+    // Rate limit
     const now = Date.now();
     const last = rateLimit.get(ip);
     if (last && now - last < 5000) {
@@ -29,7 +30,7 @@ export async function POST(req: Request) {
     // Parse form data
     const formData = await req.formData();
 
-    // Honeypot check
+    // Honeypot bot check
     if (formData.get("extra_field")) {
       return NextResponse.json({ status: "bot" });
     }
@@ -46,7 +47,6 @@ export async function POST(req: Request) {
       .update(fingerprintRaw + ip)
       .digest("hex");
 
-    // Log for backend review
     console.log("CONTACT SUBMISSION", {
       ip,
       name,
@@ -56,10 +56,10 @@ export async function POST(req: Request) {
       timestamp: new Date().toISOString(),
     });
 
-    // SECTION: Email delivery via Resend
+    // Email delivery
     const sendResult = await resend.emails.send({
       from: "MEDVOXA Contact <no-reply@medvoxa.com>",
-      to: ["hello@medvoxa.com"], // Always deliver to Zoho
+      to: ["hello@medvoxa.com"],
       subject: `New Inquiry from ${name}`,
       replyTo: email,
       html: `
