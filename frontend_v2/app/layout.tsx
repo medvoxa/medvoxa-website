@@ -3,7 +3,7 @@
 import "./globals.css";
 import "../styles/theme.css";
 
-import Header from "@/components/header/Header";
+import Navbar from "@/components/navbar/Navbar";   // NEW NAVBAR
 import Footer from "@/components/footer/Footer";
 
 import { schemaOrganization, schemaWebsite } from "@/lib/seo";
@@ -82,8 +82,8 @@ export default function RootLayout({ children }) {
       </head>
 
       <body className="bg-neutral-50 text-neutral-900 antialiased">
-        <Header />
-        <main className="pt-8">{children}</main>
+        <Navbar />     {/* NEW PREMIUM NAVBAR */}
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

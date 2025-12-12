@@ -38,7 +38,7 @@ export const metadata = {
 // ============================
 const Icon = ({ type }: { type: "check" | "shield" | "zap" }) => {
   const color = "#3E2F22";
-  const size = 26;
+  const size = 22;
 
   if (type === "check")
     return (
@@ -73,7 +73,6 @@ const Icon = ({ type }: { type: "check" | "shield" | "zap" }) => {
       </svg>
     );
 
-  // Lightning bolt (Zap)
   return (
     <svg
       width={size}
@@ -103,10 +102,10 @@ function FeatureCard({
   desc: string;
 }) {
   return (
-    <div className="p-6 border rounded-xl bg-white shadow-sm flex gap-4 items-start">
+    <div className="p-4 border rounded-lg bg-white shadow-sm flex gap-3 items-start">
       <Icon type={icon} />
       <div>
-        <h3 className="text-xl font-semibold text-[#3E2F22] mb-1">{title}</h3>
+        <h3 className="text-lg font-semibold text-[#1D1A18] mb-1">{title}</h3>
         <p className="text-neutral-600 text-sm leading-relaxed">{desc}</p>
       </div>
     </div>
@@ -120,29 +119,29 @@ export default function SolutionsPage() {
   return (
     <div className="w-full">
 
-      {/* HERO */}
-      <Section className="py-10 bg-white">
-        <Container className="text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#3E2F22] leading-tight">
-            AI Medical Billing & RCM Automation Platform
+      {/* HERO — COMPACT */}
+      <Section className="pt-14 pb-8 bg-white">
+        <Container className="text-center max-w-3xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-bold text-[#1D1A18] leading-snug">
+            AI RCM Automation Platform
           </h1>
 
-          <p className="text-neutral-700 text-lg md:text-xl mt-4 leading-relaxed">
-            A unified AI platform that accelerates reimbursements, reduces denials,
-            and delivers enterprise-grade revenue cycle automation for providers,
+          <p className="text-neutral-700 text-base md:text-lg mt-3 leading-relaxed">
+            A unified AI system that accelerates reimbursements, reduces denials,
+            and delivers accurate revenue cycle automation for providers,
             hospitals, and RCM companies.
           </p>
 
-          <div className="mt-6 flex justify-center gap-4">
+          <div className="mt-5 flex justify-center gap-3">
             <a
               href="/contact"
-              className="btn bg-brand-primary text-white rounded-xl px-6 py-3"
+              className="btn bg-brand-primary text-white rounded-lg px-5 py-2.5 text-sm"
             >
               Book a Demo
             </a>
             <a
               href="/pricing"
-              className="btn border border-brand-primary text-brand-primary rounded-xl px-6 py-3"
+              className="btn border border-brand-primary text-brand-primary rounded-lg px-5 py-2.5 text-sm"
             >
               Explore Pricing
             </a>
@@ -150,99 +149,100 @@ export default function SolutionsPage() {
         </Container>
       </Section>
 
-      {/* FEATURES */}
-      <Section className="py-10 bg-gray-50">
+      {/* FEATURES — BALANCED COMPACT */}
+      <Section className="py-6 bg-gray-50">
         <Container>
-          <h2 className="text-3xl font-bold text-[#3E2F22] text-center mb-8">
+          <h2 className="text-2xl font-bold text-[#1D1A18] text-center mb-6">
             Enterprise-Grade RCM Automation
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
 
             <FeatureCard
               icon="zap"
               title="AI-Powered Revenue Acceleration"
-              desc="Improves clean-claim rates, accelerates reimbursements, and lowers costs using intelligent validation and predictive recommendations."
+              desc="Boost clean-claim rates and accelerate reimbursement cycles using predictive validation."
             />
 
             <FeatureCard
               icon="shield"
               title="Autonomous Denial Management"
-              desc="Automatically triages denials, identifies root causes, recommends compliant fixes, and prepares payer-ready responses."
+              desc="Automatically analyze denials, identify root causes, and recommend compliant fixes."
             />
 
             <FeatureCard
               icon="check"
               title="Automated Appeal Preparation"
-              desc="Generates fully formatted payer-specific appeal packets, increasing overturn success and reducing turnaround time."
+              desc="Generate payer-ready appeal packets and improve overturn success rates."
             />
 
             <FeatureCard
               icon="zap"
               title="Real-Time Payer Policy Intelligence"
-              desc="Live rules engine that checks every claim against Medicare, Medicaid, and commercial payer policies in real-time."
+              desc="Every claim checked against Medicare, Medicaid, and commercial payer rules instantly."
             />
 
             <FeatureCard
               icon="check"
-              title="Unified Claims Ingestion & Normalization"
-              desc="Accepts 1500/UB04/EDI/PDF and normalizes all claims into a clean, unified data structure for seamless processing."
+              title="Unified Claim Ingestion"
+              desc="1500, UB04, EDI, PDF — all normalized into a structured, clean dataset."
             />
 
             <FeatureCard
               icon="shield"
-              title="End-to-End Compliance & Audit Layer"
-              desc="HIPAA-safe architecture with full audit trails, encrypted workflows, and enterprise-grade compliance controls."
+              title="Compliance & Audit Layer"
+              desc="HIPAA-ready infrastructure with full audit trails and workflow encryption."
             />
 
             <FeatureCard
               icon="zap"
               title="Financial & Operational Analytics"
-              desc="Real-time dashboards for AR trends, denial patterns, productivity metrics, and reimbursement forecasting."
+              desc="Live dashboards for AR trends, denial patterns, productivity, and forecasting."
             />
 
             <FeatureCard
               icon="check"
               title="Multi-Tenant Architecture"
-              desc="Built for hospitals, MSOs, RCM companies, and multi-location provider groups with isolated environments and centralized admin."
+              desc="Purpose-built for MSOs, RCM firms, hospitals, and large provider networks."
             />
 
             <FeatureCard
               icon="shield"
-              title="Provider & Facility Intelligence Layer"
-              desc="Automated NPI validation, enrollment checks, and profile enrichment for cleaner submissions and fewer rejections."
+              title="Provider & Facility Intelligence"
+              desc="Automated NPI validation, enrollment checks, and profile enrichment."
             />
 
             <FeatureCard
               icon="check"
-              title="Plug-and-Play Integration Model"
-              desc="API-ready platform that connects with any EMR, PM, or billing workflow with minimal operational disruption."
+              title="Plug-and-Play Integrations"
+              desc="Connect seamlessly with EMR, PM, or billing systems using our integration model."
             />
 
           </div>
         </Container>
       </Section>
 
-      {/* FINAL CTA */}
-      <Section className="py-10 bg-white">
+      {/* CTA — COMPACT */}
+      <Section className="py-6 bg-white">
         <Container className="text-center">
-          <h2 className="text-3xl font-bold text-[#3E2F22] mb-3">
+          <h2 className="text-2xl font-bold text-[#1D1A18] mb-2">
             Ready to Modernize Your Revenue Cycle?
           </h2>
-          <p className="text-neutral-700 mb-5">
+
+          <p className="text-neutral-700 text-sm mb-4">
             Start your automation journey with AI built specifically for healthcare.
           </p>
 
           <a
             href="/contact"
-            className="btn bg-brand-primary text-white px-8 py-4 rounded-xl text-lg"
+            className="btn bg-brand-primary text-white px-6 py-2.5 rounded-lg text-sm"
           >
             Book a Demo
           </a>
         </Container>
       </Section>
 
-      {/* JSON-LD SCHEMA */}
+      {/* JSON-LD Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -253,34 +253,6 @@ export default function SolutionsPage() {
             url: "https://www.medvoxa.com/solutions/ai-rcm-platform",
             description:
               "AI-powered medical billing and RCM automation platform for providers, hospitals, and RCM companies.",
-            breadcrumb: {
-              "@type": "BreadcrumbList",
-              itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                  name: "Solutions",
-                  item: "https://www.medvoxa.com/solutions",
-                },
-                {
-                  "@type": "ListItem",
-                  position: 2,
-                  name: "AI RCM Platform",
-                  item: "https://www.medvoxa.com/solutions/ai-rcm-platform",
-                },
-              ],
-            },
-            mainEntity: {
-              "@type": "SoftwareApplication",
-              name: "MEDVOXA AI RCM Platform",
-              applicationCategory: "Healthcare, Revenue Cycle Management",
-              operatingSystem: "Cloud",
-              url: "https://www.medvoxa.com",
-              offers: {
-                "@type": "Offer",
-                availability: "https://schema.org/OnlineOnly",
-              },
-            },
           }),
         }}
       />

@@ -1,21 +1,14 @@
+// app/contact/page.tsx
+
 import ContactForm from "@/components/contact/ContactForm";
 import { buildSEO, schemaBreadcrumb } from "@/lib/seo";
 
 export const metadata = buildSEO({
   title: "Contact MEDVOXA — Sales, Support, Partnerships",
   description:
-    "Get in touch with MEDVOXA for product demos, pricing, enterprise onboarding, partnerships, support, and investment inquiries. Our global remote team responds quickly.",
+    "Reach out to MEDVOXA for demos, pricing, onboarding, collaborations, or support. Our team responds quickly.",
   canonical: "https://medvoxa.com/contact",
-  keywords: [
-    "contact medvoxa",
-    "rcm platform contact",
-    "healthcare saas support",
-    "ai medical billing contact",
-    "healthcare automation help",
-    "partner with medvoxa",
-    "rcm sales inquiry",
-    "medvoxa support",
-  ],
+  keywords: ["contact medvoxa", "rcm support", "saas contact"],
   schema: schemaBreadcrumb([
     { name: "Home", url: "https://medvoxa.com" },
     { name: "Contact", url: "https://medvoxa.com/contact" },
@@ -26,50 +19,48 @@ export default function ContactPage() {
   return (
     <div className="w-full">
 
-      {/* MAIN FORM SECTION (HERO REMOVED) */}
-      <section className="pt-12 pb-10 bg-neutral-50 border-b border-neutral-200">
-        <div className="max-w-[1200px] mx-auto px-4 grid md:grid-cols-2 gap-10">
+      {/* MAIN SECTION */}
+      <section className="py-12 bg-neutral-50 border-b border-neutral-200">
+        <div className="max-w-[1100px] mx-auto px-4 grid md:grid-cols-2 gap-12">
 
           {/* LEFT */}
-          <div>
-            <h2 className="text-3xl font-semibold text-neutral-900 mb-4">
+          <div className="space-y-4">
+            <h2 className="text-2xl font-semibold text-neutral-900">
               How can we assist?
             </h2>
 
-            <p className="text-neutral-700 text-lg leading-relaxed mb-5 max-w-md">
-              Choose any topic — our team supports demos, onboarding, partnerships, and enterprise requests.
+            <p className="text-neutral-700 text-base leading-relaxed max-w-md">
+              Our team supports demos, onboarding, pricing, collaborations,
+              and provider success.
             </p>
 
-            <p className="text-neutral-700 text-lg leading-relaxed mb-5 max-w-md">
-              Prefer email? Reach us anytime at{" "}
+            <p className="text-neutral-700 text-base leading-relaxed max-w-md">
+              Prefer email? Contact us anytime at{" "}
               <a
                 href="mailto:hello@medvoxa.com"
-                className="text-[var(--brand-primary)] font-semibold underline"
+                className="text-[var(--brand-primary)] font-medium underline"
               >
                 hello@medvoxa.com
               </a>.
             </p>
 
-            <ul className="space-y-2 text-neutral-700">
-              <li>• Product questions & demos</li>
-              <li>• Pricing & enterprise onboarding</li>
-              <li>• Partnerships & collaborations</li>
-              <li>• Provider support & training</li>
-              <li>• Investor outreach</li>
+            <ul className="space-y-1.5 text-neutral-700 text-sm">
+              <li>• Product questions</li>
+              <li>• Demo scheduling</li>
+              <li>• Pricing & onboarding</li>
+              <li>• Provider support</li>
+              <li>• Collaboration inquiries</li>
             </ul>
           </div>
 
           {/* RIGHT */}
-          <div className="bg-white p-5 rounded-xl border border-neutral-200 shadow-sm">
-            <div className="[&_textarea]:h-28 [&_textarea]:min-h-[110px] [&_textarea]:text-[15px]">
-              <ContactForm />
-            </div>
+          <div className="bg-white p-6 rounded-lg border border-neutral-200 shadow-sm">
+            <ContactForm />
           </div>
 
         </div>
       </section>
 
-      {/* REMOVE ALL EXTRA SPACING BELOW */}
     </div>
   );
 }

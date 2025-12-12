@@ -2,59 +2,31 @@ import Image from "next/image";
 import Container from "@/components/shared/Container";
 import Section from "@/components/shared/Section";
 
-// ========================
-// HOMEPAGE SEO METADATA
-// ========================
+// ======================================================
+// HOMEPAGE META (Retained, can be optimized later)
+// ======================================================
 export const metadata = {
-  title: "AI Medical Billing & Autonomous RCM Platform | MEDVOXA",
+  title: "Autonomous RCM Platform | MEDVOXA",
   description:
-    "MEDVOXA is an AI-powered medical billing and RCM automation platform designed to accelerate reimbursements, reduce denials, and improve financial outcomes for healthcare providers, hospitals, and RCM companies.",
+    "MEDVOXA is a next-generation autonomous RCM engine designed for healthcare providers, offering real-time claim intelligence, denial prevention, and AI-driven financial automation.",
   keywords: [
+    "autonomous RCM",
     "AI medical billing",
     "RCM automation",
-    "autonomous RCM",
-    "healthcare billing automation",
-    "AI claims processing",
-    "medical billing software",
-    "revenue cycle automation",
-    "AI denial management",
-    "healthcare workflow automation",
+    "medical claims automation",
+    "AI denial prevention",
+    "healthcare billing AI",
   ],
-  openGraph: {
-    title: "AI Medical Billing & Autonomous RCM Platform | MEDVOXA",
-    description:
-      "Transform your revenue cycle with MEDVOXA’s AI-powered billing automation, denial prevention, and intelligent financial insights.",
-    url: "https://medvoxa.com",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "AI Medical Billing & Autonomous RCM Platform | MEDVOXA",
-    description:
-      "AI-driven medical billing & RCM automation platform for providers and hospitals.",
-  },
 };
 
-// ========================
-// REUSABLE CARDS
-// ========================
+// ======================================================
+// SHARED COMPONENTS
+// ======================================================
 function FeatureCard({ title, desc }) {
   return (
-    <div className="p-5 bg-white rounded-xl shadow-sm border">
-      <h3 className="text-lg font-semibold text-[#3E2F22] mb-1">{title}</h3>
-      <p className="text-neutral-600 text-sm leading-relaxed">{desc}</p>
-    </div>
-  );
-}
-
-function SolutionCard({ title, desc, link }) {
-  return (
-    <div className="p-5 bg-white rounded-xl shadow-sm border">
-      <h3 className="text-lg font-semibold text-[#3E2F22] mb-1">{title}</h3>
-      <p className="text-neutral-600 text-sm leading-relaxed mb-3">{desc}</p>
-      <a href={link} className="text-brand-primary font-medium text-sm">
-        Learn more →
-      </a>
+    <div className="p-5 bg-white rounded-xl shadow border hover:shadow-md transition">
+      <h3 className="text-lg font-semibold text-[#1D1A18]">{title}</h3>
+      <p className="text-[#534940] text-sm mt-1 leading-relaxed">{desc}</p>
     </div>
   );
 }
@@ -62,8 +34,8 @@ function SolutionCard({ title, desc, link }) {
 function Metric({ number, label }) {
   return (
     <div className="bg-white rounded-xl shadow-sm p-4 border text-center">
-      <div className="text-2xl font-bold text-[#3E2F22]">{number}</div>
-      <div className="text-neutral-600 text-sm mt-1">{label}</div>
+      <div className="text-2xl font-bold text-[#1D1A18]">{number}</div>
+      <div className="text-[#534940] text-sm mt-1">{label}</div>
     </div>
   );
 }
@@ -71,33 +43,41 @@ function Metric({ number, label }) {
 function WorkflowStep({ title, desc }) {
   return (
     <div className="p-5 bg-gray-50 border rounded-xl">
-      <h3 className="text-lg font-semibold text-[#3E2F22] mb-1">{title}</h3>
-      <p className="text-neutral-600 text-sm">{desc}</p>
+      <h3 className="text-lg font-semibold text-[#1D1A18]">{title}</h3>
+      <p className="text-[#534940] text-sm mt-1">{desc}</p>
     </div>
   );
 }
 
-// ========================
+// ======================================================
 // MAIN HOMEPAGE
-// ========================
+// ======================================================
 export default function HomePage() {
   return (
     <div className="w-full">
 
-      {/* HERO — REDUCED SPACING */}
+      {/* ====================================================== */}
+      {/* HERO — MINIMAL, PREMIUM, WITH CPT READINESS BADGE     */}
+      {/* ====================================================== */}
       <Section className="bg-white py-8 md:py-12">
-        <Container className="grid md:grid-cols-2 gap-8 lg:gap-10 items-center">
+        <Container className="grid md:grid-cols-2 gap-10 items-center">
 
           {/* LEFT */}
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight text-[#3E2F22]">
-              AI-Powered Revenue Cycle <br />
-              Built for Healthcare Providers
+            {/* CPT Readiness Badge */}
+            <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-neutral-300 bg-neutral-100 text-xs text-[#534940]">
+              <span className="font-semibold">CPT® Readiness:</span> Designed for future AMA CPT® data integration  
+              <span className="block text-[10px] mt-0.5">(Feature activation pending contract execution)</span>
+            </div>
+
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight text-[#1D1A18]">
+              Autonomous RCM,  
+              <br className="hidden md:block" />
+              Built for Clinical Precision
             </h1>
 
-            <p className="mt-4 text-neutral-700 text-lg max-w-lg leading-relaxed">
-              MEDVOXA automates your claims, reduces denials, improves accuracy,
-              and delivers real-time financial intelligence across your entire RCM workflow.
+            <p className="mt-4 text-[#534940] text-lg max-w-lg leading-relaxed">
+              MEDVOXA unifies your entire revenue cycle into an intelligent system that prevents denials, repairs claims automatically, and accelerates cash flow with explainable AI.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
@@ -109,10 +89,10 @@ export default function HomePage() {
               </a>
 
               <a
-                href="/solutions"
+                href="/services"
                 className="btn border border-brand-primary text-brand-primary rounded-xl px-6 py-3 text-base"
               >
-                Explore Solutions
+                View Pricing Models
               </a>
             </div>
           </div>
@@ -121,10 +101,10 @@ export default function HomePage() {
           <div className="flex justify-center md:justify-end">
             <Image
               src="/images/hero-illustration.png"
-              alt="Healthcare automation"
-              width={550}
-              height={420}
-              className="rounded-xl shadow-lg object-contain max-w-full h-auto"
+              alt="Autonomous RCM Platform"
+              width={520}
+              height={400}
+              className="rounded-xl shadow-md object-contain"
               priority
             />
           </div>
@@ -132,98 +112,90 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* FEATURES — REDUCED EMPTY GAPS */}
+      {/* ====================================================== */}
+      {/* VALUE PROPOSITION */}
+      {/* ====================================================== */}
       <Section className="py-8 bg-gray-50">
         <Container>
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-[#3E2F22] mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-[#1D1A18] mb-8">
             Why Providers Choose MEDVOXA
           </h2>
 
           <div className="grid md:grid-cols-3 gap-6">
             <FeatureCard
-              title="AI-Assisted Claims"
-              desc="Automated scrubber, LCD/NCD checks, NCCI mapping, and CPT/ICD intelligence — all in real time."
+              title="Prevent Denials"
+              desc="Real-time payer rules, NCCI logic, MUE checks, and specialty-driven automation reduce preventable denials dramatically."
             />
             <FeatureCard
-              title="Denial Prevention"
-              desc="50–60% fewer denials with proactive payer-specific rule checks and compliance verification."
+              title="Act With Financial Precision"
+              desc="AI-driven repair recommendations ensure CPT, ICD, POS, and payer requirements stay aligned before submission."
             />
             <FeatureCard
-              title="Faster Cash Flow"
-              desc="Reduce AR by 12–18% in the first month with intelligent worklists and automated follow-up workflows."
+              title="Accelerate Cash Flow"
+              desc="A 12–18% AR reduction powered by automated worklists, claim corrections, and proactive follow-ups."
             />
           </div>
         </Container>
       </Section>
 
-      {/* SOLUTIONS */}
+      {/* ====================================================== */}
+      {/* METRICS */}
+      {/* ====================================================== */}
       <Section className="py-8 bg-white">
         <Container>
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-[#3E2F22] mb-8">
-            Solutions for Every Healthcare Organization
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-[#1D1A18] mb-6">
+            Trusted Performance Metrics
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            <SolutionCard
-              title="Clinics & Practices"
-              desc="Automated claims, eligibility, coding assistance, ERAs, and complete RCM visibility."
-              link="/solutions"
-            />
-            <SolutionCard
-              title="RCM Companies"
-              desc="Scale unlimited claims, automate repetitive tasks, and improve team efficiency."
-              link="/solutions"
-            />
-            <SolutionCard
-              title="Provider Networks"
-              desc="Unified data, AI insights, automated reporting, and payer compliance built in."
-              link="/solutions"
-            />
-          </div>
-        </Container>
-      </Section>
-
-      {/* METRICS */}
-      <Section className="py-8 bg-gray-50">
-        <Container>
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-[#3E2F22] mb-6">
-            Real Results, Real Impact
-          </h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
             <Metric number="97%" label="Clean Claim Rate" />
             <Metric number="12–18%" label="AR Reduction" />
-            <Metric number="50–60%" label="Denial Prevention" />
+            <Metric number="58%" label="Prevented Denials" />
             <Metric number="3–5 Days" label="Faster Payments" />
           </div>
         </Container>
       </Section>
 
-      {/* WORKFLOW */}
-      <Section className="py-8 bg-white">
+      {/* ====================================================== */}
+      {/* HOW IT WORKS */}
+      {/* ====================================================== */}
+      <Section className="py-8 bg-gray-50">
         <Container>
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-[#3E2F22] mb-6">
-            Agentic AI Workflow
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-[#1D1A18] mb-6">
+            AI Workflow Built for Accuracy
           </h2>
 
           <div className="grid md:grid-cols-4 gap-5">
-            <WorkflowStep title="Observe" desc="Reads claim, payer data, specialty rules, and required fields." />
-            <WorkflowStep title="Analyze" desc="Detects conflicts, missing fields, and payer rule violations." />
-            <WorkflowStep title="Recommend" desc="Suggests fixes, ICD/CPT alignment, and repair recommendations." />
-            <WorkflowStep title="Act" desc="Generates corrected claims, CMS-1500, or appeal-ready packets." />
+            <WorkflowStep
+              title="Observe"
+              desc="Captures claim data, payer rules, specialty context, and documentation requirements."
+            />
+            <WorkflowStep
+              title="Analyze"
+              desc="Identifies conflicts, missing fields, coding mismatches, and payer compliance gaps."
+            />
+            <WorkflowStep
+              title="Recommend"
+              desc="Generates repair suggestions, ICD/CPT alignment, and accuracy improvements."
+            />
+            <WorkflowStep
+              title="Act"
+              desc="Produces corrected claims and ready-to-submit CMS-1500 outputs."
+            />
           </div>
         </Container>
       </Section>
 
+      {/* ====================================================== */}
       {/* FINAL CTA */}
-      <Section className="py-8 bg-[#F8F4F2]">
+      {/* ====================================================== */}
+      <Section className="py-8 bg-[#FAF9F7]">
         <Container className="text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#3E2F22] mb-3">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#1D1A18] mb-3">
             Ready to Transform Your Revenue Cycle?
           </h2>
-
-          <p className="text-neutral-700 mb-6 text-base">
-            Join clinics and RCM teams accelerating reimbursements with AI.
+          <p className="text-[#534940] mb-6">
+            Join providers modernizing their RCM operations with autonomous workflows.
           </p>
 
           <a
@@ -235,25 +207,6 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            url: "https://medvoxa.com",
-            name: "MEDVOXA",
-            description:
-              "AI medical billing & autonomous RCM automation platform for healthcare providers and hospitals.",
-            potentialAction: {
-              "@type": "SearchAction",
-              target: "https://medvoxa.com/?q={search_term_string}",
-              "query-input": "required name=search_term_string",
-            },
-          }),
-        }}
-      />
     </div>
   );
 }

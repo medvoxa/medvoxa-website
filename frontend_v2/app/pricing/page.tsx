@@ -1,20 +1,18 @@
 // app/pricing/page.tsx
-// NOTE: removed "use client" so metadata export is allowed (server component)
-
 import Link from "next/link";
 import { buildSEO, schemaBreadcrumb } from "@/lib/seo";
 
 export const metadata = buildSEO({
-  title: "Pricing — MEDVOXA: Simple, Transparent RCM Pricing",
+  title: "Pricing — MEDVOXA",
   description:
-    "Simple, transparent pricing for MEDVOXA's AI medical billing and RCM automation platform — SaaS plans, hybrid AR services, and unlimited AR packages.",
+    "Outcome-driven pricing for MEDVOXA’s autonomous RCM platform. Tailored to your organization, aligned with collections, and built for measurable financial improvement.",
   canonical: "https://medvoxa.com/pricing",
   keywords: [
     "medvoxa pricing",
     "rcm pricing",
-    "ai medical billing pricing",
-    "rcm services pricing",
-    "healthcare billing pricing"
+    "ai billing pricing",
+    "autonomous rcm pricing",
+    "healthcare automation pricing"
   ],
   schema: schemaBreadcrumb([
     { name: "Home", url: "https://medvoxa.com" },
@@ -22,286 +20,195 @@ export const metadata = buildSEO({
   ])
 });
 
-/* ----------------------------
-   Inline SVGs to replace broken images
-   ---------------------------- */
-const MetricIcon = () => (
-  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden>
-    <rect x="3" y="8" width="4" height="13" rx="1" fill="#3E2F22" opacity="0.12" />
-    <rect x="10" y="3" width="4" height="18" rx="1" fill="#3E2F22" opacity="0.18" />
-    <rect x="17" y="12" width="4" height="9" rx="1" fill="#3E2F22" opacity="0.22" />
-  </svg>
-);
-
-const AgenticAIIllustration = () => (
-  <svg width="360" height="160" viewBox="0 0 360 160" fill="none" aria-hidden>
-    <rect x="8" y="8" width="344" height="144" rx="12" fill="#F8F6F4" stroke="#E9E6E4" />
-    <g transform="translate(16,18)">
-      <rect x="0" y="0" width="80" height="40" rx="6" fill="#fff" stroke="#E5E5E5" />
-      <rect x="96" y="0" width="80" height="40" rx="6" fill="#fff" stroke="#E5E5E5" />
-      <rect x="192" y="0" width="80" height="40" rx="6" fill="#fff" stroke="#E5E5E5" />
-      <path d="M40 52 L160 52" stroke="#D8D2CF" strokeWidth="2" strokeLinecap="round" />
-      <circle cx="40" cy="70" r="10" fill="#3E2F22" opacity="0.12" />
-      <circle cx="120" cy="70" r="10" fill="#3E2F22" opacity="0.18" />
-      <circle cx="200" cy="70" r="10" fill="#3E2F22" opacity="0.22" />
-      <text x="8" y="120" fontSize="12" fill="#6B6B6B">Agentic AI: Observe → Analyze → Recommend → Act</text>
-    </g>
-  </svg>
-);
-
-/* ----------------------------
-   Components (tight spacing)
-   ---------------------------- */
-function PriceCard({ title, price, features, highlight = false }: { title: string; price: string; features: string[]; highlight?: boolean; }) {
+/* ------------------------------------
+   PRICING CARD (FIXED ALIGNMENT)
+------------------------------------ */
+function PricingCard({
+  title,
+  subtitle,
+  description,
+  features,
+  highlight = false,
+}: {
+  title: string;
+  subtitle: string;
+  description: string;
+  features: string[];
+  highlight?: boolean;
+}) {
   return (
     <div
-      className={`rounded-2xl p-5 border shadow-sm flex flex-col justify-between ${
-        highlight ? "bg-gray-50 shadow-md border-[#3E2F22]/20" : "bg-white"
+      className={`rounded-xl p-5 border shadow-sm flex flex-col ${
+        highlight ? "bg-gray-50 border-brand-primary/30 shadow-md" : "bg-white"
       }`}
     >
-      <div>
-        <h3 className="text-xl font-semibold text-[#3E2F22] mb-1">{title}</h3>
-        <p className="text-gray-700 mb-3">{price}</p>
+      {/* CONTENT WRAPPER WITH FLEX-1 TO MAKE HEIGHTS MATCH */}
+      <div className="flex-1">
+        <h3 className="text-xl font-semibold text-[#1D1A18]">{title}</h3>
 
-        <ul className="space-y-1 text-gray-700 text-sm mb-4">
+        <p className="text-sm text-brand-primary font-medium mt-1">{subtitle}</p>
+
+        <p className="text-sm text-neutral-700 mt-2 leading-relaxed">
+          {description}
+        </p>
+
+        <ul className="mt-4 space-y-1.5 text-neutral-700 text-sm leading-relaxed">
           {features.map((f, i) => (
             <li key={i}>• {f}</li>
           ))}
         </ul>
       </div>
 
+      {/* CTA CONSISTENT BRAND BUTTON */}
       <Link
         href="/contact"
-        className="mt-3 block text-center bg-[#3E2F22] text-white py-2 rounded-xl text-sm hover:bg-[#2E241A]"
+        className="mt-5 inline-block bg-brand-primary text-white px-5 py-2 rounded-lg text-sm text-center"
       >
-        Get Started
+        Request Pricing
       </Link>
     </div>
   );
 }
 
-function UnlimitedCard({ title, price, features }: { title: string; price: string; features: string[]; }) {
-  return (
-    <div className="rounded-2xl p-5 bg-gray-50 shadow-md border border-[#3E2F22]/10 flex flex-col justify-between">
-      <div>
-        <h3 className="text-xl font-semibold text-[#3E2F22] mb-1">{title}</h3>
-        <p className="text-gray-700 mb-3">{price}</p>
-
-        <ul className="space-y-1 text-gray-700 text-sm mb-4">
-          {features.map((f, i) => (
-            <li key={i}>• {f}</li>
-          ))}
-        </ul>
-      </div>
-
-      <Link
-        href="/contact"
-        className="mt-3 block text-center bg-[#3E2F22] text-white py-2 rounded-xl text-sm hover:bg-[#2E241A]"
-      >
-        Choose Plan
-      </Link>
-    </div>
-  );
-}
-
-function MetricCard({ number, label }: { number: string; label: string; }) {
-  return (
-    <div className="bg-white p-4 rounded-2xl shadow-sm border text-center">
-      <div className="mx-auto mb-3 w-12 h-12">{/* inline icon */}
-        <MetricIcon />
-      </div>
-      <div className="text-xl font-bold text-[#3E2F22]">{number}</div>
-      <div className="text-gray-600 text-sm mt-1">{label}</div>
-    </div>
-  );
-}
-
-function Workflow({ title, desc }: { title: string; desc: string; }) {
-  return (
-    <div className="p-4 rounded-xl border bg-white shadow-sm text-left">
-      <h3 className="text-lg font-semibold text-[#3E2F22] mb-1">{title}</h3>
-      <p className="text-gray-600 text-sm">{desc}</p>
-    </div>
-  );
-}
-
-/* ----------------------------
-   Main Page (tight spacing)
-   ---------------------------- */
+/* ------------------------------------
+   MAIN PAGE
+------------------------------------ */
 export default function PricingPage() {
   return (
-    <div className="w-full bg-white text-gray-900">
+    <div className="w-full bg-white text-[#1D1A18]">
 
       {/* HERO */}
-      <section className="max-w-6xl mx-auto px-6 py-14 text-center">
-        <h1 className="text-3xl md:text-4xl font-bold mb-2 text-[#3E2F22]">
-          Simple, Transparent Pricing
+      <section className="pt-14 pb-6 text-center max-w-[900px] mx-auto px-4">
+        <h1 className="text-3xl md:text-4xl font-bold leading-snug">
+          Pricing Designed for Financial Clarity
         </h1>
-        <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-          Choose the plan that fits your workflow — from pure SaaS to fully managed AR operations.
+
+        <p className="text-base text-neutral-600 mt-3 leading-relaxed">
+          Outcome-driven, transparent, and aligned with your organization’s goals.
+          No hidden fees. No unpredictable billing. Just measurable value delivered at every step.
         </p>
       </section>
 
-      {/* SaaS PLANS */}
-      <section className="max-w-6xl mx-auto px-6 py-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#3E2F22]">
-          SaaS Plans
-        </h2>
+      {/* PRICING MODELS — ROW 1 */}
+      <section className="max-w-[1100px] mx-auto px-4 py-6 grid md:grid-cols-3 gap-6">
 
-        <div className="grid md:grid-cols-3 gap-6">
-          <PriceCard
-            title="Starter"
-            price="$499 / month"
-            features={[
-              "Unlimited claims",
-              "AI-assisted scrubber",
-              "Eligibility check",
-              "CMS-1500 generator",
-              "Basic rules engine",
-            ]}
-            highlight={false}
-          />
+        <PricingCard
+          highlight
+          title="SaaS+ Billing Engine"
+          subtitle="Performance-Based Pricing"
+          description="Our flagship autonomous billing engine aligns with your collections and delivers real-time accuracy, compliance, and denial prevention."
+          features={[
+            "Autonomous AI scrubber",
+            "Payer + specialty intelligence",
+            "Claim repair recommendations",
+            "Compliance-grade accuracy",
+            "Explainable AI insights",
+          ]}
+        />
 
-          <PriceCard
-            title="Professional"
-            price="$999 / month"
-            features={[
-              "Everything in Starter",
-              "Advanced NCCI + LCD/NCD",
-              "Denial repair suggestions",
-              "ERA auto-matching",
-              "Priority support",
-            ]}
-            highlight={true}
-          />
+        <PricingCard
+          title="End-to-End RCM"
+          subtitle="Custom Engagement Model"
+          description="Built for organizations seeking fully managed operational and AI-enhanced RCM with measurable improvements in revenue integrity."
+          features={[
+            "Full billing operations",
+            "AR + Denials + Appeals",
+            "Automated claim workflows",
+            "Dedicated specialists",
+            "Enterprise reporting",
+          ]}
+        />
 
-          <PriceCard
-            title="Enterprise"
-            price="Custom"
-            features={[
-              "Unlimited users",
-              "Custom payer rules",
-              "API access",
-              "Dedicated onboarding",
-              "SLA-backed uptime",
-            ]}
-            highlight={false}
-          />
-        </div>
+        <PricingCard
+          title="A/R Recovery Program"
+          subtitle="Success-Based Pricing"
+          description="Pay only when we recover revenue. Ideal for denial-heavy workflows, aging buckets, and overdue claims."
+          features={[
+            "High-yield denial repair",
+            "Targeted AR cleanup",
+            "Appeal automation",
+            "Payer-specific workflows",
+            "Performance-linked costs",
+          ]}
+        />
+
       </section>
 
-      {/* HYBRID RCM SERVICES */}
-      <section className="max-w-6xl mx-auto px-6 py-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-[#3E2F22]">
-          Hybrid: SaaS + AR Support
-        </h2>
+      {/* PRICING MODELS — ROW 2 */}
+      <section className="max-w-[1100px] mx-auto px-4 py-6 grid md:grid-cols-2 gap-6">
 
-        <div className="grid md:grid-cols-3 gap-6">
-          <PriceCard
-            title="AR Follow-Up"
-            price="$12 / hour"
-            features={["Insurance + patient AR", "Aging bucket recovery", "Weekly reporting"]}
-          />
-          <PriceCard
-            title="Denial Management"
-            price="$14 / hour"
-            features={["CARC/RARC analysis", "Fix + resubmit workflow", "Appeal support"]}
-          />
-          <PriceCard
-            title="Payment Posting"
-            price="$10 / hour"
-            features={["ERA/EOB posting", "Reconciliation", "Ledger QA"]}
-          />
-        </div>
+        <PricingCard
+          title="Back-Office Support"
+          subtitle="Flexible Team Extension"
+          description="Scale your operational team instantly with HIPAA-compliant workflows, automated processes, and real-time analytics."
+          features={[
+            "Workload-based pricing",
+            "On-demand resource allocation",
+            "Seamless workflow integration",
+            "Automation-first operations",
+          ]}
+        />
 
-        <div className="text-center mt-6">
-          <p className="text-lg font-semibold mb-3">Full RCM: 4.5% of Collections</p>
-          <Link
-            href="/contact"
-            className="inline-block bg-[#3E2F22] text-white px-6 py-2 rounded-xl hover:bg-[#2E241A]"
-          >
-            Book a Strategy Call
-          </Link>
-        </div>
-      </section>
+        <PricingCard
+          title="Founding Partner Program"
+          subtitle="Limited Availability"
+          description="Exclusive incentives for early adopters committed to shaping the future of autonomous RCM."
+          features={[
+            "Preferential pricing model",
+            "Input into roadmap",
+            "Priority onboarding",
+            "Co-development opportunities",
+          ]}
+        />
 
-      {/* UNLIMITED AR PACKAGES */}
-      <section className="max-w-6xl mx-auto px-6 py-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-[#3E2F22]">
-          Unlimited AR Packages
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          <UnlimitedCard
-            title="Unlimited AR"
-            price="$2,888 / month"
-            features={["Unlimited follow-ups", "Unlimited portal work", "Dedicated AR specialist"]}
-          />
-
-          <UnlimitedCard
-            title="AR + Denials"
-            price="$3,788 / month"
-            features={["AR follow-up", "Denial repair", "Appeal filing"]}
-          />
-
-          <UnlimitedCard
-            title="Full RCM"
-            price="$4,688 / month"
-            features={["AR + Denials", "Payment posting", "RCM concierge"]}
-          />
-        </div>
       </section>
 
       {/* METRICS */}
-      <section className="bg-gray-50 py-8">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-[#3E2F22]">
-            Performance That Matters
+      <section className="bg-gray-50 py-6 border-t border-neutral-200">
+        <div className="max-w-[1100px] mx-auto px-4">
+          <h2 className="text-2xl font-semibold text-center mb-4">
+            Proven Revenue Outcomes
           </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <MetricCard number="97%" label="Clean Claim Rate" />
-            <MetricCard number="12–18%" label="AR Reduction" />
-            <MetricCard number="50–60%" label="Denial Prevention" />
-            <MetricCard number="3–5 Days" label="Faster Payments" />
+            <div className="p-4 bg-white rounded-lg shadow-sm border">
+              <div className="text-xl font-bold">97%</div>
+              <p className="text-sm text-neutral-600">Clean Claim Rate</p>
+            </div>
+            <div className="p-4 bg-white rounded-lg shadow-sm border">
+              <div className="text-xl font-bold">12–18%</div>
+              <p className="text-sm text-neutral-600">AR Reduction</p>
+            </div>
+            <div className="p-4 bg-white rounded-lg shadow-sm border">
+              <div className="text-xl font-bold">50–60%</div>
+              <p className="text-sm text-neutral-600">Denials Prevented</p>
+            </div>
+            <div className="p-4 bg-white rounded-lg shadow-sm border">
+              <div className="text-xl font-bold">3–5 Days</div>
+              <p className="text-sm text-neutral-600">Faster Payments</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* AGENTIC AI WORKFLOW */}
-      <section className="max-w-6xl mx-auto px-6 py-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-[#3E2F22]">
-          Agentic AI Workflow
+      {/* CTA — LIGHT CLEAN CTA */}
+      <section className="py-8 bg-[#FAF9F7] text-center border-t border-neutral-200">
+        <h2 className="text-2xl font-semibold mb-2">
+          Let’s Transform Your Revenue Cycle
         </h2>
 
-        <div className="flex justify-center mb-6">
-          <div className="w-[360px] h-[160px]">
-            <AgenticAIIllustration />
-          </div>
-        </div>
-
-        <div className="grid md:grid-cols-4 gap-4">
-          <Workflow title="Observe" desc="Reads claim + payer + specialty" />
-          <Workflow title="Analyze" desc="Detects missing data + conflicts" />
-          <Workflow title="Recommend" desc="Suggests corrections & ICD alignment" />
-          <Workflow title="Act" desc="Generates CMS-1500 / appeal packet" />
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-8 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-[#3E2F22] mb-2">
-          Ready to Modernize Your RCM?
-        </h2>
-        <p className="text-gray-600 mb-4">Start your transformation today.</p>
+        <p className="text-sm text-neutral-600 max-w-lg mx-auto mb-4 leading-relaxed">
+          Speak with our team to explore the right pricing model for your practice or organization.
+        </p>
 
         <Link
           href="/contact"
-          className="inline-block bg-[#3E2F22] text-white px-6 py-2 rounded-xl text-base hover:bg-[#2E241A]"
+          className="inline-block bg-brand-primary text-white px-6 py-2 rounded-lg text-sm"
         >
-          Start Free Trial
+          Request Pricing
         </Link>
       </section>
+
     </div>
   );
 }
