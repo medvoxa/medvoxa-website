@@ -1,20 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function ContactForm() {
   const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   async function handleSubmit(e: any) {
     e.preventDefault();
-    setStatus("loading");
+    setLoading(true);
+    setStatus("");
 
     const formData = new FormData(e.target);
 
     // Honeypot bot detection
-    const honeypot = formData.get("extra_field");
-    if (honeypot) {
+    if (formData.get("extra_field")) {
       setStatus("bot");
+      setLoading(false);
       return;
     }
 
@@ -33,69 +36,91 @@ export default function ContactForm() {
     });
 
     const result = await res.json();
-    setStatus(result.status);
+
+    if (result.status === "success") {
+      setStatus("success");
+      formRef.current?.reset(); 
+    } else {
+      setStatus("error");
+    }
+
+    setLoading(false);
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form
+      ref={formRef}
+      onSubmit={handleSubmit}
+      className="space-y-2"
+    >
+      {/* Honeypot */}
+      <input type="text" name="extra_field" className="hidden" tabIndex={-1} />
 
-      {/* Hidden anti-bot honeypot field */}
-      <input
-        type="text"
-        name="extra_field"
-        tabIndex={-1}
-        autoComplete="off"
-        className="hidden"
-      />
-
+      {/* NAME */}
       <input
         type="text"
         name="name"
         placeholder="Your Name"
         required
-        className="w-full border p-3 rounded"
+        onChange={() => setStatus("")}
+        className="w-full rounded-md border border-neutral-300 px-2.5 py-2 text-sm focus:border-[var(--brand-primary)] focus:ring-[var(--brand-primary)]/30 focus:ring-1 transition"
       />
 
+      {/* EMAIL */}
       <input
         type="email"
         name="email"
         placeholder="Email Address"
         required
-        className="w-full border p-3 rounded"
+        onChange={() => setStatus("")}
+        className="w-full rounded-md border border-neutral-300 px-2.5 py-2 text-sm focus:border-[var(--brand-primary)] focus:ring-[var(--brand-primary)]/30 focus:ring-1 transition"
       />
 
+      {/* SUBJECT */}
       <input
         type="text"
         name="subject"
         placeholder="Subject"
         required
-        className="w-full border p-3 rounded"
+        onChange={() => setStatus("")}
+        className="w-full rounded-md border border-neutral-300 px-2.5 py-2 text-sm focus:border-[var(--brand-primary)] focus:ring-[var(--brand-primary)]/30 focus:ring-1 transition"
       />
 
+      {/* MESSAGE */}
       <textarea
         name="message"
         placeholder="Your Message"
+        rows={3}
         required
-        className="w-full border p-3 rounded"
+        onChange={() => setStatus("")}
+        className="w-full rounded-md border border-neutral-300 px-2.5 py-2 text-sm focus:border-[var(--brand-primary)] focus:ring-[var(--brand-primary)]/30 focus:ring-1 transition"
       />
 
+      {/* SUBMIT BUTTON */}
       <button
         type="submit"
-        className="w-full py-3 rounded bg-[var(--brand-primary)] text-white font-semibold"
+        disabled={loading}
+        className={`w-full py-2 rounded-md text-white text-sm font-medium transition shadow-sm
+          ${
+            loading
+              ? "bg-neutral-400 cursor-not-allowed"
+              : "bg-[var(--brand-primary)] hover:bg-[#4a2c21]"
+          }`}
       >
-        Send Message
+        {loading ? "Sending…" : "Send Message"}
       </button>
 
+      {/* FEEDBACK MESSAGES */}
       {status === "success" && (
-        <p className="text-green-600 font-medium">Message sent successfully.</p>
+        <p className="text-green-600 text-sm">Message sent successfully.</p>
       )}
 
       {status === "error" && (
-        <p className="text-red-600 font-medium">Something went wrong.</p>
+        <p className="text-red-600 text-sm">Something went wrong. Please try again.</p>
       )}
 
       {status === "bot" && (
-        <p className="text-red-600 font-medium">Bot activity detected.</p>
+        <p className="text-red-600 text-sm">Bot activity detected.</p>
       )}
     </form>
   );

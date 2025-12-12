@@ -6,7 +6,7 @@ import { buildSEO, schemaBreadcrumb } from "@/lib/seo";
 export const metadata = buildSEO({
   title: "Contact MEDVOXA — Sales, Support, Partnerships",
   description:
-    "Reach out to MEDVOXA for demos, pricing, onboarding, collaborations, or support. Our team responds quickly.",
+    "Reach out to MEDVOXA for demos, pricing, collaborations, or support. Our team responds quickly.",
   canonical: "https://medvoxa.com/contact",
   keywords: ["contact medvoxa", "rcm support", "saas contact"],
   schema: schemaBreadcrumb([
@@ -20,7 +20,7 @@ export default function ContactPage() {
     <div className="w-full">
 
       {/* MAIN SECTION */}
-      <section className="py-12 bg-neutral-50 border-b border-neutral-200">
+      <section className="py-6 bg-neutral-50 border-b border-neutral-200">
         <div className="max-w-[1100px] mx-auto px-4 grid md:grid-cols-2 gap-12">
 
           {/* LEFT */}
@@ -54,7 +54,7 @@ export default function ContactPage() {
           </div>
 
           {/* RIGHT */}
-          <div className="bg-white p-6 rounded-lg border border-neutral-200 shadow-sm">
+          <div className="bg-white p-2 rounded-lg border border-neutral-200 shadow-sm w-[330px]">
             <ContactForm />
           </div>
 
