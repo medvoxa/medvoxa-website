@@ -61,7 +61,7 @@ export async function POST(req: Request) {
       from: "MEDVOXA Contact <no-reply@medvoxa.com>",
       to: ["hello@medvoxa.com"], // Always deliver to Zoho
       subject: `New Inquiry from ${name}`,
-      reply_to: email,
+      replyTo: email,
       html: `
         <h2>New Contact Inquiry</h2>
         <p><strong>Name:</strong> ${name}</p>
