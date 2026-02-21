@@ -21,13 +21,13 @@ export default function ContactForm() {
       return;
     }
 
-    // Lightweight fingerprint
     const fingerprint = {
       ua: navigator.userAgent,
       lang: navigator.language,
       platform: navigator.platform,
       ts: Date.now(),
     };
+
     formData.append("fingerprint", JSON.stringify(fingerprint));
 
     const res = await fetch("/api/contact", {
@@ -39,7 +39,7 @@ export default function ContactForm() {
 
     if (result.status === "success") {
       setStatus("success");
-      formRef.current?.reset(); 
+      formRef.current?.reset();
     } else {
       setStatus("error");
     }
@@ -51,7 +51,7 @@ export default function ContactForm() {
     <form
       ref={formRef}
       onSubmit={handleSubmit}
-      className="space-y-2"
+      className="space-y-3"
     >
       {/* Honeypot */}
       <input type="text" name="extra_field" className="hidden" tabIndex={-1} />
@@ -63,7 +63,7 @@ export default function ContactForm() {
         placeholder="Your Name"
         required
         onChange={() => setStatus("")}
-        className="w-full rounded-md border border-neutral-300 px-2.5 py-2 text-sm focus:border-[var(--brand-primary)] focus:ring-[var(--brand-primary)]/30 focus:ring-1 transition"
+        className="w-full bg-white/5 border border-white/10 rounded-md px-3 py-2 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:border-white/30 focus:bg-white/10 transition"
       />
 
       {/* EMAIL */}
@@ -73,7 +73,7 @@ export default function ContactForm() {
         placeholder="Email Address"
         required
         onChange={() => setStatus("")}
-        className="w-full rounded-md border border-neutral-300 px-2.5 py-2 text-sm focus:border-[var(--brand-primary)] focus:ring-[var(--brand-primary)]/30 focus:ring-1 transition"
+        className="w-full bg-white/5 border border-white/10 rounded-md px-3 py-2 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:border-white/30 focus:bg-white/10 transition"
       />
 
       {/* SUBJECT */}
@@ -83,7 +83,7 @@ export default function ContactForm() {
         placeholder="Subject"
         required
         onChange={() => setStatus("")}
-        className="w-full rounded-md border border-neutral-300 px-2.5 py-2 text-sm focus:border-[var(--brand-primary)] focus:ring-[var(--brand-primary)]/30 focus:ring-1 transition"
+        className="w-full bg-white/5 border border-white/10 rounded-md px-3 py-2 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:border-white/30 focus:bg-white/10 transition"
       />
 
       {/* MESSAGE */}
@@ -93,34 +93,36 @@ export default function ContactForm() {
         rows={3}
         required
         onChange={() => setStatus("")}
-        className="w-full rounded-md border border-neutral-300 px-2.5 py-2 text-sm focus:border-[var(--brand-primary)] focus:ring-[var(--brand-primary)]/30 focus:ring-1 transition"
+        className="w-full bg-white/5 border border-white/10 rounded-md px-3 py-2 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:border-white/30 focus:bg-white/10 transition resize-none"
       />
 
-      {/* SUBMIT BUTTON */}
+      {/* SUBMIT */}
       <button
         type="submit"
         disabled={loading}
-        className={`w-full py-2 rounded-md text-white text-sm font-medium transition shadow-sm
+        className={`w-full py-2 rounded-md text-sm font-medium transition
           ${
             loading
-              ? "bg-neutral-400 cursor-not-allowed"
-              : "bg-[var(--brand-primary)] hover:bg-[#4a2c21]"
+              ? "bg-white/20 text-white/60 cursor-not-allowed"
+              : "bg-[#4FD1C5] text-black hover:opacity-90"
           }`}
       >
         {loading ? "Sending…" : "Send Message"}
       </button>
 
-      {/* FEEDBACK MESSAGES */}
+      {/* STATUS */}
       {status === "success" && (
-        <p className="text-green-600 text-sm">Message sent successfully.</p>
+        <p className="text-emerald-400 text-xs">Message sent successfully.</p>
       )}
 
       {status === "error" && (
-        <p className="text-red-600 text-sm">Something went wrong. Please try again.</p>
+        <p className="text-red-400 text-xs">
+          Something went wrong. Please try again.
+        </p>
       )}
 
       {status === "bot" && (
-        <p className="text-red-600 text-sm">Bot activity detected.</p>
+        <p className="text-red-400 text-xs">Bot activity detected.</p>
       )}
     </form>
   );

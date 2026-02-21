@@ -48,3 +48,6 @@ media/
 # Local files
 *.sqlite
 *.db
+
+tsconfig.tsbuildinfo
+current_structure.txt

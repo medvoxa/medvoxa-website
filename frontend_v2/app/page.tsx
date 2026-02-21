@@ -1,211 +1,121 @@
-import Image from "next/image";
+import type { Metadata } from "next";
 import Container from "@/components/shared/Container";
-import Section from "@/components/shared/Section";
+import Link from "next/link";
 
-// ======================================================
-// HOMEPAGE META (Retained, can be optimized later)
-// ======================================================
-export const metadata = {
-  title: "Autonomous RCM Platform | MEDVOXA",
+export const metadata: Metadata = {
+  title: "MEDVOXA | Autonomous Revenue Intelligence",
   description:
-    "MEDVOXA is a next-generation autonomous RCM engine designed for healthcare providers, offering real-time claim intelligence, denial prevention, and AI-driven financial automation.",
-  keywords: [
-    "autonomous RCM",
-    "AI medical billing",
-    "RCM automation",
-    "medical claims automation",
-    "AI denial prevention",
-    "healthcare billing AI",
-  ],
+    "Precision claim preparation and governance automation for independent healthcare practices.",
 };
 
-// ======================================================
-// SHARED COMPONENTS
-// ======================================================
-function FeatureCard({ title, desc }) {
-  return (
-    <div className="p-5 bg-white rounded-xl shadow border hover:shadow-md transition">
-      <h3 className="text-lg font-semibold text-[#1D1A18]">{title}</h3>
-      <p className="text-[#534940] text-sm mt-1 leading-relaxed">{desc}</p>
-    </div>
-  );
-}
-
-function Metric({ number, label }) {
-  return (
-    <div className="bg-white rounded-xl shadow-sm p-4 border text-center">
-      <div className="text-2xl font-bold text-[#1D1A18]">{number}</div>
-      <div className="text-[#534940] text-sm mt-1">{label}</div>
-    </div>
-  );
-}
-
-function WorkflowStep({ title, desc }) {
-  return (
-    <div className="p-5 bg-gray-50 border rounded-xl">
-      <h3 className="text-lg font-semibold text-[#1D1A18]">{title}</h3>
-      <p className="text-[#534940] text-sm mt-1">{desc}</p>
-    </div>
-  );
-}
-
-// ======================================================
-// MAIN HOMEPAGE
-// ======================================================
-export default function HomePage() {
+export default function HomePage(): JSX.Element {
   return (
     <div className="w-full">
 
-      {/* ====================================================== */}
-      {/* HERO — MINIMAL, PREMIUM, WITH CPT READINESS BADGE     */}
-      {/* ====================================================== */}
-      <Section className="bg-white py-8 md:py-12">
-        <Container className="grid md:grid-cols-2 gap-10 items-center">
+      {/* ================= HERO ================= */}
+      <section className="relative overflow-hidden text-white min-h-[64vh] flex items-center">
+
+        {/* Base Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0B1226] via-[#1A1F3D] to-[#3A2F6E]" />
+
+        {/* Ambient Glow — Reduced */}
+        <div className="absolute right-[-140px] top-[100px] w-[460px] h-[460px] bg-purple-600/15 rounded-full blur-[180px]" />
+
+        {/* Subtle Grid */}
+        <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:44px_44px]" />
+
+        <Container className="relative grid md:grid-cols-2 gap-6 items-center pt-14 pb-8">
 
           {/* LEFT */}
-          <div>
-            {/* CPT Readiness Badge */}
-            <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-neutral-300 bg-neutral-100 text-xs text-[#534940]">
-              <span className="font-semibold">CPT® Readiness:</span> Designed for future AMA CPT® data integration  
-              <span className="block text-[10px] mt-0.5">(Feature activation pending contract execution)</span>
-            </div>
+          <div className="max-w-[520px]">
 
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight text-[#1D1A18]">
-              Autonomous RCM,  
-              <br className="hidden md:block" />
-              Built for Clinical Precision
+            <h1 className="text-[2.4rem] md:text-[2.75rem] leading-[1.15] font-semibold tracking-[-0.015em]">
+              Precision in Claim Preparation.
+              <br />
+              Confidence in Every Submission Decision.
             </h1>
 
-            <p className="mt-4 text-[#534940] text-lg max-w-lg leading-relaxed">
-              MEDVOXA unifies your entire revenue cycle into an intelligent system that prevents denials, repairs claims automatically, and accelerates cash flow with explainable AI.
+            <div className="w-12 h-[1.5px] bg-white/25 my-4" />
+
+            <p className="text-slate-300 text-[0.95rem] leading-[1.65]">
+              MEDVOXA delivers structured validation, payer-aware governance logic,
+              and audit-traceable automation before claims are submitted —
+              reducing denials and improving reimbursement predictability.
             </p>
 
-            <div className="mt-6 flex flex-wrap gap-3">
+            <p className="text-slate-400 text-[0.9rem] mt-2">
+              Built for independent practices and specialty providers.
+            </p>
+
+            {/* Internal Authority Links */}
+            <div className="mt-5 flex gap-5 text-[0.9rem] text-slate-400">
+              <Link
+                href="/company"
+                className="hover:text-white transition"
+              >
+                Governance Framework →
+              </Link>
+
+              <Link
+                href="/security"
+                className="hover:text-white transition"
+              >
+                Security Architecture →
+              </Link>
+            </div>
+
+            {/* CTA */}
+            <div className="mt-6 flex gap-3">
+              <a
+                href="/founding"
+                className="px-5 py-2 rounded-md bg-[#4FD1C5] text-black text-[0.9rem] font-medium hover:opacity-90 transition"
+              >
+                Become a Founding Partner
+              </a>
+
               <a
                 href="/contact"
-                className="btn bg-brand-primary text-white rounded-xl px-6 py-3 text-base"
+                className="px-5 py-2 rounded-md border border-white/20 text-[0.9rem] hover:bg-white/10 transition"
               >
-                Book a Demo
-              </a>
-
-              <a
-                href="/services"
-                className="btn border border-brand-primary text-brand-primary rounded-xl px-6 py-3 text-base"
-              >
-                View Pricing Models
+                Executive Overview
               </a>
             </div>
+
           </div>
 
-          {/* RIGHT */}
-          <div className="flex justify-center md:justify-end">
-            <Image
-              src="/images/hero-illustration.png"
-              alt="Autonomous RCM Platform"
-              width={520}
-              height={400}
-              className="rounded-xl shadow-md object-contain"
-              priority
+          {/* RIGHT — TIGHT PRODUCT STACK */}
+          <div className="relative flex justify-center items-center">
+
+            {/* Subtle Depth Glow */}
+            <div className="absolute w-[420px] h-[420px] bg-purple-600/12 rounded-full blur-[160px]" />
+
+            {/* Back Layer */}
+            <img
+              src="/hero-product.png"
+              alt=""
+              className="absolute top-5 scale-95 opacity-12 blur-sm rounded-2xl"
             />
+
+            {/* Mid Layer */}
+            <img
+              src="/hero-product.png"
+              alt=""
+              className="absolute top-2 scale-[0.98] opacity-25 blur-[0.7px] rounded-2xl"
+            />
+
+            {/* Front Layer */}
+            <div className="relative z-10">
+              <img
+                src="/hero-product.png"
+                alt="MEDVOXA Platform Dashboard"
+                className="rounded-2xl shadow-[0_30px_70px_rgba(0,0,0,0.6)] border border-white/10 max-w-[520px] w-full"
+              />
+            </div>
+
           </div>
 
         </Container>
-      </Section>
-
-      {/* ====================================================== */}
-      {/* VALUE PROPOSITION */}
-      {/* ====================================================== */}
-      <Section className="py-8 bg-gray-50">
-        <Container>
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-[#1D1A18] mb-8">
-            Why Providers Choose MEDVOXA
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <FeatureCard
-              title="Prevent Denials"
-              desc="Real-time payer rules, NCCI logic, MUE checks, and specialty-driven automation reduce preventable denials dramatically."
-            />
-            <FeatureCard
-              title="Act With Financial Precision"
-              desc="AI-driven repair recommendations ensure CPT, ICD, POS, and payer requirements stay aligned before submission."
-            />
-            <FeatureCard
-              title="Accelerate Cash Flow"
-              desc="A 12–18% AR reduction powered by automated worklists, claim corrections, and proactive follow-ups."
-            />
-          </div>
-        </Container>
-      </Section>
-
-      {/* ====================================================== */}
-      {/* METRICS */}
-      {/* ====================================================== */}
-      <Section className="py-8 bg-white">
-        <Container>
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-[#1D1A18] mb-6">
-            Trusted Performance Metrics
-          </h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-            <Metric number="97%" label="Clean Claim Rate" />
-            <Metric number="12–18%" label="AR Reduction" />
-            <Metric number="58%" label="Prevented Denials" />
-            <Metric number="3–5 Days" label="Faster Payments" />
-          </div>
-        </Container>
-      </Section>
-
-      {/* ====================================================== */}
-      {/* HOW IT WORKS */}
-      {/* ====================================================== */}
-      <Section className="py-8 bg-gray-50">
-        <Container>
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-[#1D1A18] mb-6">
-            AI Workflow Built for Accuracy
-          </h2>
-
-          <div className="grid md:grid-cols-4 gap-5">
-            <WorkflowStep
-              title="Observe"
-              desc="Captures claim data, payer rules, specialty context, and documentation requirements."
-            />
-            <WorkflowStep
-              title="Analyze"
-              desc="Identifies conflicts, missing fields, coding mismatches, and payer compliance gaps."
-            />
-            <WorkflowStep
-              title="Recommend"
-              desc="Generates repair suggestions, ICD/CPT alignment, and accuracy improvements."
-            />
-            <WorkflowStep
-              title="Act"
-              desc="Produces corrected claims and ready-to-submit CMS-1500 outputs."
-            />
-          </div>
-        </Container>
-      </Section>
-
-      {/* ====================================================== */}
-      {/* FINAL CTA */}
-      {/* ====================================================== */}
-      <Section className="py-8 bg-[#FAF9F7]">
-        <Container className="text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#1D1A18] mb-3">
-            Ready to Transform Your Revenue Cycle?
-          </h2>
-          <p className="text-[#534940] mb-6">
-            Join providers modernizing their RCM operations with autonomous workflows.
-          </p>
-
-          <a
-            href="/contact"
-            className="btn bg-brand-primary text-white px-8 py-3 rounded-xl text-lg"
-          >
-            Book a Demo
-          </a>
-        </Container>
-      </Section>
+      </section>
 
     </div>
   );

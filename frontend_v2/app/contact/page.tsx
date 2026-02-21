@@ -1,64 +1,86 @@
-// app/contact/page.tsx
-
 import ContactForm from "@/components/contact/ContactForm";
+import Container from "@/components/shared/Container";
 import { buildSEO, schemaBreadcrumb } from "@/lib/seo";
 
 export const metadata = buildSEO({
-  title: "Contact MEDVOXA — Sales, Support, Partnerships",
+  title: "Contact | MEDVOXA",
   description:
-    "Reach out to MEDVOXA for demos, pricing, collaborations, or support. Our team responds quickly.",
+    "Connect with MEDVOXA for structured engagement discussions, operational alignment, and platform demonstrations.",
   canonical: "https://medvoxa.com/contact",
-  keywords: ["contact medvoxa", "rcm support", "saas contact"],
   schema: schemaBreadcrumb([
     { name: "Home", url: "https://medvoxa.com" },
-    { name: "Contact", url: "https://medvoxa.com/contact" },
-  ]),
+    { name: "Contact", url: "https://medvoxa.com/contact" }
+  ])
 });
 
 export default function ContactPage() {
   return (
     <div className="w-full">
 
-      {/* MAIN SECTION */}
-      <section className="py-6 bg-neutral-50 border-b border-neutral-200">
-        <div className="max-w-[1100px] mx-auto px-4 grid md:grid-cols-2 gap-12">
+      {/* HERO */}
+      <section className="relative overflow-hidden text-white min-h-[45vh]">
 
-          {/* LEFT */}
-          <div className="space-y-4">
-            <h2 className="text-2xl font-semibold text-neutral-900">
-              How can we assist?
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0A0F1F] via-[#141936] to-[#2E2A63]" />
+        <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:40px_40px]" />
+
+        <Container className="relative pt-20 pb-10 max-w-3xl">
+
+          <h1 className="text-[2.6rem] md:text-[3rem] font-semibold leading-[1.22] tracking-[-0.005em]">
+            Structured Engagement Begins Here
+          </h1>
+
+          <p className="mt-4 text-[0.98rem] text-slate-300/85 leading-[1.7]">
+            Reach out for platform demonstrations, operational alignment,
+            governance discussions, or structured engagement planning.
+          </p>
+
+        </Container>
+      </section>
+
+      {/* CONTACT CONTENT */}
+      <section className="relative py-10 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#141936] via-[#0F1529] to-[#0B1124]" />
+
+        <Container className="relative grid md:grid-cols-2 gap-10 items-start">
+
+          {/* LEFT SIDE */}
+          <div>
+
+            <h2 className="text-2xl md:text-3xl font-semibold text-white tracking-[-0.01em]">
+              How We Can Assist
             </h2>
 
-            <p className="text-neutral-700 text-base leading-relaxed max-w-md">
-              Our team supports demos, onboarding, pricing, collaborations,
-              and provider success.
+            <p className="mt-4 text-sm text-slate-300/85 leading-[1.7] max-w-md">
+              Our team supports structured onboarding, governance alignment,
+              pricing discussions, and platform demonstrations.
             </p>
 
-            <p className="text-neutral-700 text-base leading-relaxed max-w-md">
-              Prefer email? Contact us anytime at{" "}
+            <p className="mt-4 text-sm text-slate-300/85 leading-[1.7]">
+              Prefer direct communication? Email us at{" "}
               <a
                 href="mailto:hello@medvoxa.com"
-                className="text-[var(--brand-primary)] font-medium underline"
+                className="underline hover:text-white"
               >
                 hello@medvoxa.com
-              </a>.
+              </a>
             </p>
 
-            <ul className="space-y-1.5 text-neutral-700 text-sm">
-              <li>• Product questions</li>
-              <li>• Demo scheduling</li>
-              <li>• Pricing & onboarding</li>
-              <li>• Provider support</li>
-              <li>• Collaboration inquiries</li>
+            <ul className="mt-4 space-y-2 text-sm text-slate-300/85 leading-[1.7]">
+              <li>• Platform demonstrations</li>
+              <li>• Pricing engagement models</li>
+              <li>• Provider operational alignment</li>
+              <li>• Governance discussions</li>
+              <li>• Strategic partnerships</li>
             </ul>
+
           </div>
 
-          {/* RIGHT */}
-          <div className="bg-white p-2 rounded-lg border border-neutral-200 shadow-sm w-[330px]">
+          {/* RIGHT SIDE — GLASS FORM PANEL */}
+          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6">
             <ContactForm />
           </div>
 
-        </div>
+        </Container>
       </section>
 
     </div>

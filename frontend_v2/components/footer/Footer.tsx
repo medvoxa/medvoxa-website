@@ -1,58 +1,110 @@
-// frontend_v2/components/footer/Footer.tsx
+"use client";
+
+import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#FAF9F7] border-t border-neutral-200">
-      <div className="max-w-[1400px] mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-10">
+    <footer className="bg-[#070F24] text-slate-300 border-t border-white/5">
 
-        {/* LOGO + TAGLINE */}
-        <div>
-          <img
-            src="/logo.png"
-            alt="MEDVOXA"
-            className="h-10 mb-3"
-          />
-          <p className="text-neutral-600 text-sm leading-relaxed max-w-xs">
-            MEDVOXA — AI-powered RCM intelligence platform
-            built for modern healthcare providers.
-          </p>
-        </div>
+      <div className="max-w-[1200px] mx-auto px-6 py-12">
 
-        {/* COMPANY */}
-        <div>
-          <h3 className="text-[#1D1A18] font-semibold mb-3">Company</h3>
-          <ul className="space-y-2 text-sm text-neutral-700">
-            <li><a href="/careers" className="hover:text-[#1D1A18]">Careers</a></li>
-          </ul>
-        </div>
+        <div className="grid md:grid-cols-3 gap-10">
 
-        {/* SOLUTIONS */}
-        <div>
-          <h3 className="text-[#1D1A18] font-semibold mb-3">Solutions</h3>
-          <ul className="space-y-2 text-sm text-neutral-700">
-            <li><a href="/solutions" className="hover:text-[#1D1A18]">RCM Automation</a></li>
-            <li><a href="/solutions" className="hover:text-[#1D1A18]">Intelligent Claims Engine</a></li>
-          </ul>
-        </div>
+          {/* LEFT — BRAND */}
+          <div className="space-y-4 max-w-sm">
 
-        {/* LEGAL */}
-        <div>
-          <h3 className="text-[#1D1A18] font-semibold mb-3">Legal</h3>
-          <ul className="space-y-2 text-sm text-neutral-700">
-            <li><a href="/privacy" className="hover:text-[#1D1A18]">Privacy Policy</a></li>
-            <li><a href="/terms" className="hover:text-[#1D1A18]">Terms of Service</a></li>
-            <li><a href="/security" className="hover:text-[#1D1A18]">Data Security</a></li>
-          </ul>
+            <div className="text-lg tracking-[0.35em] font-medium text-white">
+              MEDVOXA
+            </div>
+
+            <p className="text-sm text-slate-400 leading-relaxed">
+              Structured claim preparation and governance automation
+              built for independent practices and specialty providers.
+            </p>
+
+          </div>
+
+          {/* COMPANY */}
+          <div>
+            <h4 className="text-xs uppercase tracking-widest text-slate-500 mb-4">
+              Company
+            </h4>
+
+            <ul className="space-y-2 text-sm">
+
+              <li>
+                <Link href="/company" className="hover:text-white transition">
+                  About MEDVOXA
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/founding" className="hover:text-white transition">
+                  Founding Program
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/careers" className="hover:text-white transition">
+                  Careers
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/contact" className="hover:text-white transition">
+                  Contact
+                </Link>
+              </li>
+
+            </ul>
+          </div>
+
+          {/* TRUST */}
+          <div>
+            <h4 className="text-xs uppercase tracking-widest text-slate-500 mb-4">
+              Trust
+            </h4>
+
+            <ul className="space-y-2 text-sm">
+
+              <li>
+                <Link href="/security" className="hover:text-white transition">
+                  Security
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/privacy" className="hover:text-white transition">
+                  Privacy Policy
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/terms" className="hover:text-white transition">
+                  Terms of Service
+                </Link>
+              </li>
+
+            </ul>
+          </div>
+
         </div>
 
       </div>
 
-      {/* COPYRIGHT */}
-      <div className="border-t border-neutral-200 py-4">
-        <p className="text-center text-xs text-neutral-500">
-          © 2025 MEDVOXA. All rights reserved.
-        </p>
+      {/* BOTTOM BAR */}
+      <div className="border-t border-white/5">
+        <div className="max-w-[1200px] mx-auto px-6 py-5 flex justify-between items-center text-xs text-slate-500">
+
+          <span>© {new Date().getFullYear()} MEDVOXA</span>
+
+          <span className="tracking-widest uppercase text-slate-600">
+            Autonomous Revenue Intelligence
+          </span>
+
+        </div>
       </div>
+
     </footer>
   );
 }

@@ -3,24 +3,24 @@
 import "./globals.css";
 import "../styles/theme.css";
 
-import Navbar from "@/components/navbar/Navbar";   // NEW NAVBAR
+import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 
 import { schemaOrganization, schemaWebsite } from "@/lib/seo";
 
 // -----------------------------
-// CORRECTED METADATA (Next.js 14)
+// METADATA
 // -----------------------------
 export const metadata = {
   metadataBase: new URL("http://localhost:3000"),
 
   title: {
-    default: "MEDVOXA — AI-Powered RCM Platform",
+    default: "MEDVOXA — Precision Claim Preparation Platform",
     template: "%s | MEDVOXA",
   },
 
   description:
-    "MEDVOXA is a next-generation AI-powered RCM automation platform designed for healthcare providers, offering real-time claim intelligence and end-to-end revenue cycle automation.",
+    "MEDVOXA is an AMA-Compliant SaaS+ platform designed for structured claim validation, governance alignment, and disciplined preparation prior to submission.",
 
   icons: {
     icon: "/favicon.ico",
@@ -39,7 +39,7 @@ export const metadata = {
         url: "/images/og-default.jpg",
         width: 1200,
         height: 630,
-        alt: "MEDVOXA — AI-Powered RCM",
+        alt: "MEDVOXA — Precision Claim Preparation",
       },
     ],
   },
@@ -53,7 +53,7 @@ export const metadata = {
 };
 
 // -----------------------------
-// VIEWPORT (MUST BE SEPARATE IN NEXT 14)
+// VIEWPORT
 // -----------------------------
 export const viewport = {
   width: "device-width",
@@ -64,11 +64,14 @@ export const viewport = {
 // -----------------------------
 // ROOT LAYOUT
 // -----------------------------
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <head>
-        {/* Global JSON-LD Structured Data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -76,15 +79,20 @@ export default function RootLayout({ children }) {
           }}
         />
 
-        {/* Preload key assets */}
         <link rel="preload" href="/images/og-default.jpg" as="image" />
         <link rel="preload" href="/logo.png" as="image" />
       </head>
 
-      <body className="bg-neutral-50 text-neutral-900 antialiased">
-        <Navbar />     {/* NEW PREMIUM NAVBAR */}
-        <main>{children}</main>
+      <body className="bg-[#0A0F1F] text-white antialiased">
+
+        <Navbar />
+
+        <main className="min-h-screen">
+          {children}
+        </main>
+
         <Footer />
+
       </body>
     </html>
   );
