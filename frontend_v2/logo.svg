@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 52" fill="none">
+  <!-- Mark: geometric diamond with inner cross — precision + healthcare -->
+  <g>
+    <!-- Outer diamond -->
+    <path d="M24 4 L44 26 L24 48 L4 26 Z" fill="#C8422A" />
+    <!-- Inner white cross — subtle medical reference -->
+    <rect x="21" y="16" width="6" height="20" rx="1.5" fill="white" opacity="0.92"/>
+    <rect x="14" y="23" width="20" height="6" rx="1.5" fill="white" opacity="0.92"/>
+    <!-- Small corner accent diamonds for depth -->
+    <path d="M24 4 L28 10 L24 16 L20 10 Z" fill="white" opacity="0.18"/>
+  </g>
+
+  <!-- Wordmark: MED in dark, VOXA in terracotta -->
+  <text x="56" y="35" font-family="'Georgia', 'Times New Roman', serif" font-size="26" font-weight="700" letter-spacing="-0.5" fill="#1a1a1a">MED</text>
+  <text x="103" y="35" font-family="'Georgia', 'Times New Roman', serif" font-size="26" font-weight="700" letter-spacing="-0.5" fill="#C8422A" font-style="italic">VOXA</text>
+
+  <!-- Tagline beneath -->
+  <text x="56" y="47" font-family="'Georgia', serif" font-size="8.5" letter-spacing="2.5" fill="#888888">REVENUE CYCLE MANAGEMENT</text>
+</svg>

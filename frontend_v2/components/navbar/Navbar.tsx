@@ -1,111 +1,191 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
-export default function Navbar(): JSX.Element {
-  const [menuOpen, setMenuOpen] = useState(false);
+const NAV_LINKS = [
+  { label: "Services",   href: "/services" },
+  { label: "Solutions",  href: "/solutions" },
+  { label: "Specialties",href: "/specialties" },
+  { label: "Pricing",    href: "/pricing" },
+  { label: "Company",    href: "/company" },
+  { label: "Careers",    href: "/careers" },
+];
+
+export default function Navbar() {
+  const [scrolled,    setScrolled]    = useState(false);
+  const [menuOpen,    setMenuOpen]    = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
 
   return (
-    <header className="w-full absolute top-0 left-0 z-50">
-      <nav className="max-w-[1400px] mx-auto pl-12 pr-8 py-5 flex items-center justify-between">
-
-        {/* Wordmark */}
-        <Link
-          href="/"
-          className="text-white text-[1.5rem] font-semibold tracking-[0.28em] leading-none"
-          style={{ fontFamily: '"Yu Gothic UI", "Yu Gothic", sans-serif' }}
+    <>
+      <header
+        style={{
+          position: "fixed",
+          top: 0, left: 0, right: 0,
+          zIndex: 100,
+          background: scrolled ? "rgba(250,248,245,0.97)" : "#faf8f5",
+          borderBottom: `1px solid ${scrolled ? "var(--border)" : "var(--border)"}`,
+          backdropFilter: scrolled ? "blur(12px)" : "none",
+          transition: "background 0.2s, box-shadow 0.2s",
+          boxShadow: scrolled ? "0 1px 16px rgba(26,23,20,0.06)" : "none",
+        }}
+      >
+        <div
+          className="container-site"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            height: 68,
+          }}
         >
-          medvoxa
-        </Link>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-
-          <Link href="/" className="hover:text-white transition-colors">
-            Home
+          {/* Logo */}
+          <Link href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
+            <img
+              src="/logo.svg"
+              alt="MEDVOXA"
+              width={160}
+              height={38}
+              style={{ height: 38, width: "auto" }}
+            />
           </Link>
 
-          <Link href="/solutions" className="hover:text-white transition-colors">
-            Solutions
-          </Link>
+          {/* Desktop nav */}
+          <nav
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 32,
+            }}
+            className="hidden-mobile"
+          >
+            {NAV_LINKS.map((l) => (
+              <Link key={l.href} href={l.href} className="nav-link">
+                {l.label}
+              </Link>
+            ))}
+          </nav>
 
-          <Link href="/providers" className="hover:text-white transition-colors">
-            Providers
-          </Link>
+          {/* Desktop CTA */}
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }} className="hidden-mobile">
+            <Link href="/contact" className="btn-outline" style={{ padding: "9px 20px", fontSize: 13 }}>
+              Contact
+            </Link>
+            <Link href="/contact" className="btn-primary btn-red" style={{ padding: "9px 20px", fontSize: 13 }}>
+              Request Demo
+            </Link>
+          </div>
 
-          <Link href="/pricing" className="hover:text-white transition-colors">
-            Pricing
-          </Link>
-
-          <Link href="/company" className="hover:text-white transition-colors">
-            Company
-          </Link>
-
-          <Link href="/security" className="hover:text-white transition-colors">
-            Security
-          </Link>
-
-          <Link href="/careers" className="hover:text-white transition-colors">
-            Careers
-          </Link>
-
-          <Link href="/contact" className="hover:text-white transition-colors">
-            Contact
-          </Link>
-
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+            className="show-mobile"
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: 8,
+              display: "flex",
+              flexDirection: "column",
+              gap: 5,
+            }}
+          >
+            <span style={{ display: "block", width: 22, height: 1.5, background: menuOpen ? "transparent" : "var(--ink)", transition: "0.2s" }} />
+            <span style={{
+              display: "block", width: 22, height: 1.5,
+              background: "var(--ink)",
+              transform: menuOpen ? "rotate(45deg) translate(4px, 4px)" : "none",
+              transition: "0.2s",
+            }} />
+            <span style={{
+              display: "block", width: 22, height: 1.5,
+              background: "var(--ink)",
+              transform: menuOpen ? "rotate(-45deg) translate(4px, -4px)" : "none",
+              transition: "0.2s",
+            }} />
+          </button>
         </div>
+      </header>
 
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden flex flex-col gap-1.5"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span className="w-6 h-0.5 bg-white"></span>
-          <span className="w-6 h-0.5 bg-white"></span>
-          <span className="w-6 h-0.5 bg-white"></span>
-        </button>
-      </nav>
-
-      {/* Mobile Menu */}
+      {/* Mobile drawer */}
       {menuOpen && (
-        <div className="md:hidden bg-[#0B1124] px-8 py-6 space-y-4 text-sm text-slate-300">
-
-          <Link href="/" onClick={() => setMenuOpen(false)} className="block hover:text-white">
-            Home
-          </Link>
-
-          <Link href="/solutions" onClick={() => setMenuOpen(false)} className="block hover:text-white">
-            Solutions
-          </Link>
-
-          <Link href="/providers" onClick={() => setMenuOpen(false)} className="block hover:text-white">
-            Providers
-          </Link>
-
-          <Link href="/pricing" onClick={() => setMenuOpen(false)} className="block hover:text-white">
-            Pricing
-          </Link>
-
-          <Link href="/company" onClick={() => setMenuOpen(false)} className="block hover:text-white">
-            Company
-          </Link>
-
-          <Link href="/security" onClick={() => setMenuOpen(false)} className="block hover:text-white">
-            Security
-          </Link>
-
-          <Link href="/careers" onClick={() => setMenuOpen(false)} className="block hover:text-white">
-            Careers
-          </Link>
-
-          <Link href="/contact" onClick={() => setMenuOpen(false)} className="block hover:text-white">
-            Contact
-          </Link>
-
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 99,
+            background: "#faf8f5",
+            paddingTop: 80,
+            paddingLeft: 28,
+            paddingRight: 28,
+            paddingBottom: 28,
+            display: "flex",
+            flexDirection: "column",
+            gap: 0,
+          }}
+        >
+          {NAV_LINKS.map((l, i) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                display: "block",
+                padding: "16px 0",
+                borderBottom: "1px solid var(--border)",
+                fontFamily: "var(--font-display)",
+                fontSize: 22,
+                fontWeight: 500,
+                color: "var(--ink)",
+                textDecoration: "none",
+                letterSpacing: "-0.5px",
+              }}
+            >
+              {l.label}
+            </Link>
+          ))}
+          <div style={{ marginTop: 32, display: "flex", flexDirection: "column", gap: 12 }}>
+            <Link href="/contact" onClick={() => setMenuOpen(false)} className="btn-primary btn-red" style={{ textAlign: "center", justifyContent: "center" }}>
+              Request Demo
+            </Link>
+            <Link href="/contact" onClick={() => setMenuOpen(false)} className="btn-outline" style={{ textAlign: "center", justifyContent: "center" }}>
+              Contact Us
+            </Link>
+          </div>
+          <div style={{ marginTop: "auto", paddingTop: 24 }}>
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+              <span className="chip chip-green"><span style={{ width: 5, height: 5, borderRadius: "50%", background: "var(--green)" }} />AMA CPT Licensed</span>
+              <span className="chip chip-blue">Now Onboarding</span>
+            </div>
+          </div>
         </div>
       )}
-    </header>
+
+      {/* Spacer so page content starts below fixed nav */}
+      <div style={{ height: 68 }} />
+
+      <style>{`
+        @media (max-width: 900px) {
+          .hidden-mobile { display: none !important; }
+        }
+        @media (min-width: 901px) {
+          .show-mobile { display: none !important; }
+        }
+      `}</style>
+    </>
   );
 }

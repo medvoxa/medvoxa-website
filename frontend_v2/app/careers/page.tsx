@@ -1,152 +1,82 @@
-import Container from "@/components/shared/Container";
-import { buildSEO, schemaBreadcrumb } from "@/lib/seo";
+import type { Metadata } from "next";
+import Link from "next/link";
 
-export const metadata = buildSEO({
-  title: "Careers | MEDVOXA",
+export const metadata: Metadata = {
+  title: "Careers — Join the MEDVOXA Team",
   description:
-    "Join MEDVOXA to build structured, deterministic systems for healthcare revenue integrity and governance-driven operational architecture.",
-  canonical: "https://medvoxa.com/careers",
-  schema: schemaBreadcrumb([
-    { name: "Home", url: "https://medvoxa.com" },
-    { name: "Careers", url: "https://medvoxa.com/careers" }
-  ])
-});
+    "MEDVOXA is building a team of healthcare billing experts and technologists. Explore open roles and learn about our culture and mission.",
+  alternates: { canonical: "https://medvoxa.com/careers" },
+};
 
 export default function CareersPage() {
   return (
-    <div className="w-full">
-
-      {/* HERO */}
-      <section className="relative overflow-hidden text-white min-h-[50vh]">
-
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0A0F1F] via-[#141936] to-[#2E2A63]" />
-        <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:40px_40px]" />
-
-        <Container className="relative pt-20 pb-10 max-w-3xl">
-
-          <h1 className="text-[2.6rem] md:text-[3rem] font-semibold leading-[1.22] tracking-[-0.005em]">
-            Build Structured Systems That Matter
+    <div>
+      <section style={{ background: "#fff", padding: "72px 0 64px", borderBottom: "1px solid var(--border)" }}>
+        <div className="container-site" style={{ maxWidth: 680 }}>
+          <div className="section-kicker">Careers</div>
+          <h1 style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(32px, 5vw, 50px)",
+            fontWeight: 600,
+            letterSpacing: "-1.5px",
+            color: "var(--ink)",
+            lineHeight: 1.1,
+            marginBottom: 20,
+          }}>
+            Build the future of healthcare billing.
           </h1>
-
-          <p className="mt-4 text-[0.98rem] text-slate-300/85 leading-[1.7]">
-            MEDVOXA is building deterministic infrastructure for healthcare
-            revenue integrity. We welcome engineers, designers, healthcare
-            professionals, and operators who value precision and ownership.
+          <p style={{ fontSize: 16, color: "var(--ink-light)", lineHeight: 1.78, marginBottom: 16 }}>
+            MEDVOXA is in active development and building a team of healthcare billing professionals,
+            engineers, and operations specialists who want to fix one of healthcare's most persistent
+            administrative problems.
           </p>
-
-        </Container>
+          <p style={{ fontSize: 16, color: "var(--ink-light)", lineHeight: 1.78 }}>
+            We're a small, focused team — so the work you do here matters from day one.
+          </p>
+        </div>
       </section>
 
-      {/* WHY JOIN */}
-      <section className="relative py-10 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#141936] via-[#0F1529] to-[#0B1124]" />
-
-        <Container className="relative grid md:grid-cols-3 gap-6">
-
-          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6">
-            <h3 className="text-white text-lg font-semibold mb-3">
-              Real Operational Impact
-            </h3>
-            <p className="text-sm text-slate-300/85 leading-[1.7]">
-              Your work influences healthcare organizations operating in
-              regulated environments with measurable financial consequences.
-            </p>
+      <section style={{ background: "var(--cream)", padding: "72px 0", borderBottom: "1px solid var(--border)" }}>
+        <div className="container-site">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }} className="two-col">
+            {[
+              { area: "Billing & Coding", roles: ["Medical Billing Specialist", "Certified Professional Coder (CPC)", "Denial Management Specialist", "A/R Follow-up Coordinator"] },
+              { area: "Operations", roles: ["Revenue Cycle Manager", "Client Success Manager", "Onboarding Specialist", "Practice Liaison"] },
+              { area: "Technology", roles: ["Full-Stack Engineer (Next.js / TypeScript)", "Backend Engineer", "Healthcare Integrations Engineer (HL7 / FHIR)", "Data Engineer"] },
+              { area: "Leadership", roles: ["Director of Revenue Cycle", "Director of Client Success", "Head of Compliance", "VP of Operations"] },
+            ].map((group) => (
+              <div key={group.area} className="card" style={{ padding: "28px 28px" }}>
+                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "var(--red)", marginBottom: 16 }}>
+                  {group.area}
+                </div>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
+                  {group.roles.map((role) => (
+                    <li key={role} style={{ display: "flex", gap: 10, fontSize: 14, color: "var(--ink-mid)", fontWeight: 500 }}>
+                      <span style={{ color: "var(--red)", flexShrink: 0 }}>→</span> {role}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
 
-          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6">
-            <h3 className="text-white text-lg font-semibold mb-3">
-              Engineering Discipline
+          <div style={{ marginTop: 36, background: "#fff", border: "1px solid var(--border)", borderRadius: "var(--radius-lg)", padding: "36px", textAlign: "center" }}>
+            <h3 style={{ fontFamily: "var(--font-display)", fontSize: 22, fontWeight: 600, color: "var(--ink)", marginBottom: 12 }}>
+              No specific role listed that matches you?
             </h3>
-            <p className="text-sm text-slate-300/85 leading-[1.7]">
-              We value structured thinking, deterministic architecture,
-              and forward-only operational design.
+            <p style={{ fontSize: 14, color: "var(--ink-light)", lineHeight: 1.7, marginBottom: 24, maxWidth: 480, margin: "0 auto 24px" }}>
+              We're building the team thoughtfully. If you have deep expertise in healthcare billing,
+              healthcare technology, or revenue cycle operations — we want to hear from you.
             </p>
+            <Link href="/contact" className="btn-primary btn-red">
+              Send a General Application
+            </Link>
           </div>
-
-          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6">
-            <h3 className="text-white text-lg font-semibold mb-3">
-              Ownership Culture
-            </h3>
-            <p className="text-sm text-slate-300/85 leading-[1.7]">
-              We prioritize initiative, clarity, and craftsmanship over
-              titles and hierarchy.
-            </p>
-          </div>
-
-        </Container>
+        </div>
+        <style>{`
+          @media (max-width: 768px) { .two-col { grid-template-columns: 1fr !important; } }
+        `}</style>
       </section>
-
-      {/* EARLY TALENT */}
-      <section className="relative py-10">
-        <div className="absolute inset-0 bg-[#0B1124]" />
-
-        <Container className="relative max-w-3xl">
-
-          <h2 className="text-2xl md:text-3xl font-semibold text-white tracking-[-0.01em]">
-            Early Career & Internship Pathways
-          </h2>
-
-          <p className="mt-4 text-sm text-slate-300/85 leading-[1.7]">
-            We welcome early-career contributors across engineering,
-            AI, design, operations, and healthcare domains. Curiosity,
-            accountability, and discipline matter more than pedigree.
-          </p>
-
-          <ul className="mt-4 space-y-2 text-sm text-slate-300/85 leading-[1.7]">
-            <li>• Direct exposure to production systems</li>
-            <li>• Mentorship within structured architecture design</li>
-            <li>• Real product ownership</li>
-            <li>• Remote-friendly collaboration</li>
-            <li>• Growth pathways into full-time roles</li>
-          </ul>
-
-        </Container>
-      </section>
-
-      {/* GLOBAL CONTRIBUTORS */}
-      <section className="relative py-10">
-        <div className="absolute inset-0 bg-[#0B1124]" />
-
-        <Container className="relative max-w-3xl">
-
-          <h2 className="text-2xl md:text-3xl font-semibold text-white tracking-[-0.01em]">
-            Global Contributors Welcome
-          </h2>
-
-          <p className="mt-4 text-sm text-slate-300/85 leading-[1.7]">
-            MEDVOXA values builders from diverse backgrounds. We prioritize
-            demonstrated capability, structured thinking, and execution
-            discipline over formal credentials.
-          </p>
-
-        </Container>
-      </section>
-
-      {/* CONTACT CTA */}
-      <section className="relative py-10">
-        <div className="absolute inset-0 bg-[#0B1124]" />
-
-        <Container className="relative text-center max-w-2xl">
-
-          <h2 className="text-2xl md:text-3xl font-semibold text-white tracking-[-0.01em] mb-4">
-            Connect With Us
-          </h2>
-
-          <p className="text-sm text-slate-300/85 leading-[1.7] mb-6">
-            Share your resume, portfolio, GitHub, or professional profile.
-            We review every structured application thoughtfully.
-          </p>
-
-          <a
-            href="mailto:hello@medvoxa.com"
-            className="border border-white/20 px-6 py-2.5 rounded-md text-sm hover:bg-white/10 transition"
-          >
-            hello@medvoxa.com
-          </a>
-
-        </Container>
-      </section>
-
     </div>
   );
 }

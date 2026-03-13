@@ -1,108 +1,178 @@
 import type { Metadata } from "next";
-import Container from "@/components/shared/Container";
-import { buildSEO, schemaBreadcrumb } from "@/lib/seo";
+import Link from "next/link";
 
-export const metadata = buildSEO({
-  title: "Company | MEDVOXA",
+export const metadata: Metadata = {
+  title: "Company — About MEDVOXA",
   description:
-    "MEDVOXA is a structured revenue cycle platform focused on deterministic validation, governance enforcement, and forward-only operational integrity for healthcare organizations.",
-  canonical: "https://medvoxa.com/company",
-  schema: schemaBreadcrumb([
-    { name: "Home", url: "https://medvoxa.com" },
-    { name: "Company", url: "https://medvoxa.com/company" }
-  ])
-});
+    "MEDVOXA was built to bring structured discipline to healthcare revenue cycle management. Learn about our philosophy, approach, and the principles that guide how we work.",
+  alternates: { canonical: "https://medvoxa.com/company" },
+};
 
-export default function CompanyPage(): JSX.Element {
+export default function CompanyPage() {
   return (
-    <div className="w-full">
+    <div>
 
       {/* HERO */}
-      <section className="relative overflow-hidden text-white min-h-[50vh]">
-
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0A0F1F] via-[#141936] to-[#2E2A63]" />
-        <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:40px_40px]" />
-
-        <Container className="relative pt-20 pb-10 max-w-3xl">
-
-          <h1 className="text-[2.6rem] md:text-[3rem] font-semibold leading-[1.22] tracking-[-0.005em]">
-            Structured Systems for Revenue Integrity
-          </h1>
-
-          <p className="mt-4 text-[0.98rem] text-slate-300/85 leading-[1.7]">
-            MEDVOXA was founded to introduce deterministic architecture,
-            governance discipline, and forward-only operational integrity
-            into healthcare revenue cycle management.
-          </p>
-
-        </Container>
+      <section style={{ background: "#fff", padding: "72px 0 64px", borderBottom: "1px solid var(--border)" }}>
+        <div className="container-site">
+          <div style={{ maxWidth: 680 }}>
+            <div className="section-kicker">Our Story</div>
+            <h1 style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(32px, 5vw, 52px)",
+              fontWeight: 600,
+              letterSpacing: "-1.5px",
+              color: "var(--ink)",
+              lineHeight: 1.08,
+              marginBottom: 22,
+            }}>
+              Built to fix a broken system.
+            </h1>
+            <p style={{ fontSize: 16, color: "var(--ink-light)", lineHeight: 1.78, marginBottom: 18 }}>
+              Healthcare providers are extraordinary at patient care. Most of them did not go into
+              medicine to spend hours chasing denied claims, correcting coding errors, or trying to
+              understand why a payer underpaid a procedure by 40%.
+            </p>
+            <p style={{ fontSize: 16, color: "var(--ink-light)", lineHeight: 1.78 }}>
+              MEDVOXA was built to take that burden off the practice — combining structured claim
+              governance with experienced billing expertise so providers can focus on what they
+              do best.
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* PHILOSOPHY */}
-      <section className="relative py-10 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#141936] via-[#0F1529] to-[#0B1124]" />
+      <section style={{ background: "var(--cream)", padding: "80px 0", borderBottom: "1px solid var(--border)" }}>
+        <div className="container-site">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }} className="two-col">
+            <div>
+              <div className="section-kicker">Our Philosophy</div>
+              <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(26px, 3.5vw, 38px)", fontWeight: 600, letterSpacing: "-1px", color: "var(--ink)", marginBottom: 22 }}>
+                Revenue cycle management should be a{" "}
+                <em style={{ color: "var(--red)", fontStyle: "italic" }}>system,</em>{" "}
+                not a scramble.
+              </h2>
+              <p style={{ fontSize: 15, color: "var(--ink-light)", lineHeight: 1.78, marginBottom: 18 }}>
+                Most medical billing operations are reactive — they respond to denials after they
+                happen, fix errors after they're returned, and report on problems after revenue
+                has already been lost.
+              </p>
+              <p style={{ fontSize: 15, color: "var(--ink-light)", lineHeight: 1.78, marginBottom: 18 }}>
+                MEDVOXA is designed around the opposite approach. Claim governance happens before
+                submission. Errors are caught internally. Denial patterns are analyzed to close the
+                root cause — not just the individual claim.
+              </p>
+              <p style={{ fontSize: 15, color: "var(--ink-light)", lineHeight: 1.78 }}>
+                The result is a billing operation that gets more predictable and more effective
+                over time — not one that requires constant firefighting.
+              </p>
+            </div>
 
-        <Container className="relative grid md:grid-cols-2 gap-10">
-
-          <div>
-            <h2 className="text-2xl md:text-3xl font-semibold text-white tracking-[-0.01em]">
-              Our Philosophy
-            </h2>
-
-            <p className="mt-4 text-sm text-slate-300/85 leading-[1.7]">
-              Revenue cycle management should operate as a structured
-              system — not a reactive workflow. MEDVOXA separates intake,
-              validation, governance, and submission into disciplined layers
-              to ensure clarity and accountability.
-            </p>
-
-            <p className="mt-4 text-sm text-slate-300/85 leading-[1.7]">
-              Every decision within the platform is traceable. Every claim
-              follows a forward-only lifecycle. No mutation. No ambiguity.
-              No uncontrolled submission exposure.
-            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+              {[
+                { title: "Governance before submission", desc: "Every claim is validated against payer-specific rules, coding standards, and compliance requirements before it's filed — not after it's rejected." },
+                { title: "Systematic denial response", desc: "Denials aren't worked one at a time. They're categorized, analyzed, and addressed in patterns — so the same denial type stops recurring." },
+                { title: "Accountability at every stage", desc: "Every step in the claim lifecycle is documented and traceable. We can answer 'where is this claim?' at any point in the process." },
+                { title: "Transparency as standard practice", desc: "Practices deserve to know what's happening with their revenue. Clear reporting and regular communication are not optional extras — they're built in." },
+              ].map((item) => (
+                <div key={item.title} style={{
+                  background: "#fff",
+                  border: "1px solid var(--border)",
+                  borderRadius: "var(--radius-lg)",
+                  padding: "24px 24px",
+                  display: "flex", gap: 16,
+                }}>
+                  <div style={{ color: "var(--red)", fontSize: 18, flexShrink: 0, marginTop: 2 }}>◈</div>
+                  <div>
+                    <div style={{ fontFamily: "var(--font-display)", fontSize: 16, fontWeight: 600, color: "var(--ink)", marginBottom: 6 }}>
+                      {item.title}
+                    </div>
+                    <p style={{ fontSize: 14, color: "var(--ink-light)", lineHeight: 1.7, margin: 0 }}>
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-
-          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6">
-            <h3 className="text-white text-lg font-semibold mb-3">
-              Operational Principles
-            </h3>
-
-            <ul className="space-y-2 text-sm text-slate-300/85 leading-[1.7]">
-              <li>• Deterministic evaluation before submission</li>
-              <li>• Governance enforcement at every structural layer</li>
-              <li>• Audit-traceable lifecycle control</li>
-              <li>• Forward-only claim progression</li>
-              <li>• Measurable performance accountability</li>
-            </ul>
-          </div>
-
-        </Container>
+        </div>
+        <style>{`
+          @media (max-width: 768px) {
+            .two-col { grid-template-columns: 1fr !important; gap: 40px !important; }
+          }
+        `}</style>
       </section>
 
-      {/* ARCHITECTURAL VISION */}
-      <section className="relative py-10">
-        <div className="absolute inset-0 bg-[#0B1124]" />
-
-        <Container className="relative max-w-3xl">
-
-          <h2 className="text-2xl md:text-3xl font-semibold text-white tracking-[-0.01em]">
-            Architectural Vision
+      {/* PLATFORM — Autonomous SaaS+ */}
+      <section style={{ background: "#fff", padding: "80px 0", borderBottom: "1px solid var(--border)" }}>
+        <div className="container-site" style={{ maxWidth: 820 }}>
+          <div className="section-kicker">The Platform</div>
+          <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(26px, 3.5vw, 38px)", fontWeight: 600, letterSpacing: "-1px", color: "var(--ink)", marginBottom: 20 }}>
+            Autonomous SaaS+ — what that means for your practice
           </h2>
-
-          <p className="mt-4 text-sm text-slate-300/85 leading-[1.7]">
-            The MEDVOXA platform is built on layered system design —
-            separating claim intake, rule evaluation, governance logic,
-            submission control, and post-outcome intelligence.
+          <p style={{ fontSize: 15, color: "var(--ink-light)", lineHeight: 1.78, marginBottom: 16 }}>
+            "Autonomous SaaS+" describes how MEDVOXA operates differently from traditional billing services
+            and from self-service billing software. It's not one or the other.
           </p>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, marginTop: 36 }} className="two-col">
+            <div>
+              <div style={{ background: "var(--red-light)", border: "1px solid #f5cfc7", borderRadius: "var(--radius-md)", padding: "20px", marginBottom: 16 }}>
+                <div style={{ fontFamily: "var(--font-display)", fontSize: 15, fontWeight: 600, color: "var(--red)", marginBottom: 8 }}>Traditional Billing Service</div>
+                <p style={{ fontSize: 13.5, color: "var(--ink-light)", lineHeight: 1.7, margin: 0 }}>
+                  Human-operated workflows, minimal technology, limited visibility into what's happening,
+                  and your practice is dependent on the performance of individual billing staff.
+                </p>
+              </div>
+              <div style={{ background: "var(--blue-light)", border: "1px solid var(--blue-mid)", borderRadius: "var(--radius-md)", padding: "20px" }}>
+                <div style={{ fontFamily: "var(--font-display)", fontSize: 15, fontWeight: 600, color: "var(--blue)", marginBottom: 8 }}>Self-Service Billing Software</div>
+                <p style={{ fontSize: 13.5, color: "var(--ink-light)", lineHeight: 1.7, margin: 0 }}>
+                  Technology-forward but requires significant internal effort. You still need
+                  someone who knows how to use it, interpret the data, and manage the billing work.
+                </p>
+              </div>
+            </div>
+            <div style={{ background: "var(--ink)", borderRadius: "var(--radius-lg)", padding: "28px 28px" }}>
+              <div style={{ fontFamily: "var(--font-display)", fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 12, fontStyle: "italic" }}>
+                MEDVOXA Autonomous SaaS+
+              </div>
+              <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.55)", lineHeight: 1.7, marginBottom: 20 }}>
+                Structured automation handles the predictable, repeatable parts of the revenue cycle.
+                Experienced billing professionals handle the judgment calls, appeals, and payer negotiations.
+                You get the best of both — without managing either.
+              </p>
+              {[
+                "Systematic automation where it adds reliability",
+                "Human expertise where judgment matters",
+                "Transparent reporting you can actually read",
+                "AMA CPT-licensed coding throughout",
+              ].map((pt) => (
+                <div key={pt} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 10, fontSize: 13.5, color: "rgba(255,255,255,0.7)" }}>
+                  <span style={{ color: "var(--red)", flexShrink: 0 }}>✓</span>
+                  {pt}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
-          <p className="mt-4 text-sm text-slate-300/85 leading-[1.7]">
-            This structure ensures operational stability, regulatory
-            discipline, and scalable performance across provider networks,
-            specialty groups, and enterprise healthcare organizations.
-          </p>
-
-        </Container>
+      {/* CTA */}
+      <section style={{ background: "var(--cream)", padding: "72px 0" }}>
+        <div className="container-site" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 36 }}>
+          <div style={{ maxWidth: 500 }}>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(24px, 3vw, 36px)", color: "var(--ink)", fontWeight: 600, letterSpacing: "-0.8px", marginBottom: 12 }}>
+              Want to learn more about how MEDVOXA works?
+            </h2>
+            <p style={{ fontSize: 15, color: "var(--ink-light)", lineHeight: 1.7, margin: 0 }}>
+              Reach out and we'll walk you through the platform, our process, and how an engagement typically begins.
+            </p>
+          </div>
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <Link href="/contact" className="btn-primary btn-red">Request a Demo</Link>
+            <Link href="/services" className="btn-outline">View Services</Link>
+          </div>
+        </div>
       </section>
 
     </div>
