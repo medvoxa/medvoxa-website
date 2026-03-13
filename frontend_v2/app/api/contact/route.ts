@@ -57,7 +57,7 @@ export async function POST(req: Request) {
     await resend.emails.send({
       from: "MEDVOXA Contact Form <no-reply@medvoxa.com>",
       to:   [process.env.CONTACT_EMAIL || "hello@medvoxa.com"],
-      replyTo: email,
+      reply_to: email,
       subject: `[MEDVOXA Contact] ${subject || "New Inquiry"} — ${name}`,
       html: `
 <!DOCTYPE html>
