@@ -33,27 +33,27 @@ export default function FoundingApplicationForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-3"
+      className="space-y-3 founding-form"
     >
       <input
         name="practice_name"
         placeholder="Practice Name"
         required
-        className="w-full bg-white/5 border border-white/10 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:border-[#4FD1C5]"
+        className="founding-input"
       />
 
       <input
         name="specialty"
         placeholder="Primary Specialty"
         required
-        className="w-full bg-white/5 border border-white/10 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:border-[#4FD1C5]"
+        className="founding-input"
       />
 
       <input
         name="locations"
         placeholder="Number of Locations"
         required
-        className="w-full bg-white/5 border border-white/10 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:border-[#4FD1C5]"
+        className="founding-input"
       />
 
       <input
@@ -61,7 +61,7 @@ export default function FoundingApplicationForm() {
         type="email"
         placeholder="Work Email"
         required
-        className="w-full bg-white/5 border border-white/10 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:border-[#4FD1C5]"
+        className="founding-input"
       />
 
       <textarea
@@ -69,30 +69,30 @@ export default function FoundingApplicationForm() {
         placeholder="Briefly describe your current billing challenges"
         rows={3}
         required
-        className="w-full bg-white/5 border border-white/10 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:border-[#4FD1C5]"
+        className="founding-input"
       />
 
       <button
         type="submit"
         disabled={loading}
-        className={`w-full py-2 rounded-md text-sm font-medium transition
+        className={`founding-submit transition
         ${
           loading
-            ? "bg-neutral-600 cursor-not-allowed"
-            : "bg-[#4FD1C5] text-black hover:opacity-90"
+            ? "is-loading"
+            : "is-ready"
         }`}
       >
         {loading ? "Submitting…" : "Submit Application"}
       </button>
 
       {status === "success" && (
-        <p className="text-emerald-400 text-sm">
+        <p className="founding-success">
           Application submitted successfully.
         </p>
       )}
 
       {status === "error" && (
-        <p className="text-red-400 text-sm">
+        <p className="founding-error">
           Submission failed. Please try again.
         </p>
       )}
